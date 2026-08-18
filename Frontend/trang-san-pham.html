@@ -3,410 +3,125 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm Nước Hoa - LUXURY Store</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Cửa hàng nước hoa</title>
-
-    <link rel="stylesheet"
-          href="/css/giao-dien.css">
-    <link rel="stylesheet"
-      href="/css/trang-san-pham.css">
+    <link rel="stylesheet" href="css/giao-dien.css">
+    <link rel="stylesheet" href="css/trang-san-pham.css">
 </head>
-
 
 <body>
 
     <!-- PHẦN ĐẦU TRANG -->
     <header class="dau-trang">
-
-        <div class="logo" >
+        <div class="logo">
             𝓛𝓤𝓧𝓤𝓡𝓨
-
         </div>
 
-
         <nav class="thanh-dieu-huong">
-            <a href="trang-chu.html">
-                𝕿𝖗𝖆𝖓𝖌 𝖈𝖍ủ
-            </a>
-
-            <a href="trang-san-pham.html">
-                𝓢ả𝓷 𝓹𝓱ẩ𝓶
-            </a>
-
-            <a href="trang-don-hang.html">
-                Đơ𝖓 𝖍à𝖓𝖌
-            </a>
-
-            <a href="trang-quan-tri.html">
-                Đ𝖎ề𝖚 𝖐𝖍𝖔ả𝖓 𝖛à 𝖌𝖎ớ𝖎 𝖙𝖍𝖎ệ𝖚
-            </a>
-
+            <a href="trang-chu.html">𝕿𝖗𝖆𝖓𝖌 𝖈𝖍ủ</a>
+            <a href="trang-san-pham.html" style="color: #6e62f1; font-weight: bold;">𝓢ả𝓷 𝓹𝓱ẩ𝓶</a>
+            <a href="trang-don-hang.html">Đơ𝖓 𝖍à𝖓𝖌</a>
+            <a href="trang-quan-tri.html">𝕼𝖚ả𝖓 𝖙𝖗ị</a>
         </nav>
+
         <div class="logo-giua">
-            <img src="/logo-removebg-preview.png" width="130px">
+            <img src="logo-removebg-preview.png" width="130px" alt="Luxury Logo">
         </div>
 
         <div class="tai-khoan">
-            𝕿à𝖎 𝖐𝖍𝖔ả𝖓
+            <a href="trang-quan-tri.html" style="color: #070707; text-decoration: none;">𝕿à𝖎 𝖐𝖍𝖔ả𝖓</a>
         </div>
-
     </header>
+
     <main class="khu-vuc-san-pham">
 
-    <!-- BỘ LỌC BÊN TRÁI -->
+        <!-- BỘ LỌC BÊN TRÁI -->
+        <aside class="bo-loc-san-pham">
+            <h2>Bộ lọc sản phẩm</h2>
 
-    <aside class="bo-loc-san-pham">
+            <!-- TÌM KIẾM -->
+            <div class="loc-tim-kiem">
+                <h3>Tìm kiếm</h3>
+                <input type="text" id="tu-khoa" placeholder="Nhập tên nước hoa...">
+            </div>
 
-        <h2>
-            Bộ lọc sản phẩm
-        </h2>
+            <!-- GIỚI TÍNH -->
+            <div class="nhom-bo-loc">
+                <h3>Giới tính</h3>
+                <label>
+                    <input type="checkbox" value="nam" name="gioi-tinh" onchange="locSanPham()"> Nam
+                </label>
+                <label>
+                    <input type="checkbox" value="nu" name="gioi-tinh" onchange="locSanPham()"> Nữ
+                </label>
+                <label>
+                    <input type="checkbox" value="unisex" name="gioi-tinh" onchange="locSanPham()"> Unisex
+                </label>
+            </div>
 
+            <!-- THƯƠNG HIỆU -->
+            <div class="nhom-bo-loc">
+                <h3>Thương hiệu</h3>
+                <label>
+                    <input type="checkbox" value="dior" name="thuong-hieu" onchange="locSanPham()"> Dior
+                </label>
+                <label>
+                    <input type="checkbox" value="chanel" name="thuong-hieu" onchange="locSanPham()"> Chanel
+                </label>
+                <label>
+                    <input type="checkbox" value="gucci" name="thuong-hieu" onchange="locSanPham()"> Gucci
+                </label>
+                <label>
+                    <input type="checkbox" value="versace" name="thuong-hieu" onchange="locSanPham()"> Versace
+                </label>
+            </div>
 
-        <!-- TÌM KIẾM -->
+            <!-- KHOẢNG GIÁ -->
+            <div class="nhom-bo-loc">
+                <h3>Khoảng giá</h3>
+                <label>
+                    <input type="radio" name="khoang-gia" value="all" checked onchange="locSanPham()"> Tất cả mức giá
+                </label>
+                <label>
+                    <input type="radio" name="khoang-gia" value="duoi-1" onchange="locSanPham()"> Dưới 1 triệu
+                </label>
+                <label>
+                    <input type="radio" name="khoang-gia" value="1-2" onchange="locSanPham()"> 1 - 2 triệu
+                </label>
+                <label>
+                    <input type="radio" name="khoang-gia" value="2-5" onchange="locSanPham()"> 2 - 5 triệu
+                </label>
+                <label>
+                    <input type="radio" name="khoang-gia" value="tren-5" onchange="locSanPham()"> Trên 5 triệu
+                </label>
+            </div>
 
-        <div class="loc-tim-kiem">
-
-            <h3>
-                Tìm kiếm
-            </h3>
-
-            <input
-                type="text"
-                id="tu-khoa"
-                placeholder="Nhập tên nước hoa..."
-            >
-
-        </div>
-
-
-        <!-- GIỚI TÍNH -->
-
-        <div class="nhom-bo-loc">
-
-            <h3>
-                Giới tính
-            </h3>
-
-            <label>
-                <input
-                    type="checkbox"
-                    value="nam"
-                    name="gioi-tinh"
-                >
-                Nam
-            </label>
-
-            <label>
-                <input
-                    type="checkbox"
-                    value="nu"
-                    name="gioi-tinh"
-                >
-                Nữ
-            </label>
-
-            <label>
-                <input
-                    type="checkbox"
-                    value="unisex"
-                    name="gioi-tinh"
-                >
-                Unisex
-            </label>
-
-        </div>
-
-
-        <!-- THƯƠNG HIỆU -->
-
-        <div class="nhom-bo-loc">
-
-            <h3>
-                Thương hiệu
-            </h3>
-
-            <label>
-                <input
-                    type="checkbox"
-                    value="dior"
-                    name="thuong-hieu"
-                >
-                Dior
-            </label>
-
-            <label>
-                <input
-                    type="checkbox"
-                    value="chanel"
-                    name="thuong-hieu"
-                >
-                Chanel
-            </label>
-
-            <label>
-                <input
-                    type="checkbox"
-                    value="gucci"
-                    name="thuong-hieu"
-                >
-                Gucci
-            </label>
-
-            <label>
-                <input
-                    type="checkbox"
-                    value="versace"
-                    name="thuong-hieu"
-                >
-                Versace
-            </label>
-
-        </div>
-
-
-        <!-- KHOẢNG GIÁ -->
-
-        <div class="nhom-bo-loc">
-
-    <h3>
-        Khoảng giá
-    </h3>
-
-    <label>
-        <input
-            type="radio"
-            name="khoang-gia"
-            value="duoi-1"
-        >
-        Dưới 1 triệu
-    </label>
-
-    <label>
-        <input
-            type="radio"
-            name="khoang-gia"
-            value="1-2"
-        >
-        1 - 2 triệu
-    </label>
-
-    <label>
-        <input
-            type="radio"
-            name="khoang-gia"
-            value="2-5"
-        >
-        2 - 5 triệu
-    </label>
-
-    <label>
-        <input
-            type="radio"
-            name="khoang-gia"
-            value="tren-5"
-        >
-        Trên 5 triệu
-    </label>
-
-</div>
-
-
-        <!-- NÚT TÌM KIẾM -->
-
-        <button
-            class="nut-tim-kiem"
-            onclick="locSanPham()"
-        >
-            TÌM KIẾM
-        </button>
-
-    </aside>
-
-
-    <!-- DANH SÁCH SẢN PHẨM BÊN PHẢI -->
-
-    <div class="khu-vuc-hien-thi-san-pham">
-
-        <div class="tieu-de-san-pham">
-
-            <h2>
-                𝓢Ả𝓝 𝓟𝓗Ẩ𝓜 𝓝ƯỚ𝓒 𝓗𝓞𝓐 
-            </h2>
-
-            <span id="so-luong-san-pham">
-                Tất cả sản phẩm
-            </span>
-
-        </div>
-
-
-        <div
-    id="danh-sach-san-pham"
-    class="danh-sach-san-pham"
->
-
-    <!-- SẢN PHẨM 1 -->
-
-    <div class="san-pham">
-
-        <img
-            src="/113.jpg"
-            alt="Dior Sauvage"
-        >
-
-        <div class="thong-tin-san-pham">
-
-            <h3 class="ten-san-pham">
-                Dior Sauvage
-            </h3>
-
-            <p class="danh-muc-san-pham">
-                Nước hoa nam
-            </p>
-
-            <p class="gia-san-pham">
-                2.500.000 VNĐ
-            </p>
-
-            <button class="nut-dat-hang">
-                ĐẶT HÀNG
+            <!-- NÚT TÌM KIẾM -->
+            <button class="nut-tim-kiem" onclick="locSanPham()">
+                LỌC SẢN PHẨM
             </button>
+        </aside>
 
+        <!-- DANH SÁCH SẢN PHẨM BÊN PHẢI -->
+        <div class="khu-vuc-hien-thi-san-pham">
+            <div class="tieu-de-san-pham">
+                <h2>𝓢Ả𝓝 𝓟𝓗Ẩ𝓜 𝓝ƯỚ𝓒 𝓗𝓞𝓐</h2>
+                <span id="so-luong-san-pham">Đang tải sản phẩm...</span>
+            </div>
+
+            <!-- KHUNG SẢN PHẨM ĐƯỢC TẢI TỪ LOCALSTORAGE -->
+            <div id="danh-sach-san-pham" class="danh-sach-san-pham">
+                <!-- Tải tự động qua ung-dung.js -->
+            </div>
         </div>
 
-    </div>
+    </main>
 
-
-    <!-- SẢN PHẨM 2 -->
-
-    <div class="san-pham">
-
-        <img
-            src="/113.jpg"
-            alt="Chanel Coco"
-        >
-
-        <div class="thong-tin-san-pham">
-
-            <h3 class="ten-san-pham">
-                Chanel Coco
-            </h3>
-
-            <p class="danh-muc-san-pham">
-                Nước hoa nữ
-            </p>
-
-            <p class="gia-san-pham">
-                3.200.000 VNĐ
-            </p>
-
-            <button class="nut-dat-hang">
-                ĐẶT HÀNG
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- SẢN PHẨM 3 -->
-
-    <div class="san-pham">
-
-        <img
-            src="/113.jpg"
-            alt="Gucci Bloom"
-        >
-
-        <div class="thong-tin-san-pham">
-
-            <h3 class="ten-san-pham">
-                Gucci Bloom
-            </h3>
-
-            <p class="danh-muc-san-pham">
-                Nước hoa nữ
-            </p>
-
-            <p class="gia-san-pham">
-                2.800.000 VNĐ
-            </p>
-
-            <button class="nut-dat-hang">
-                ĐẶT HÀNG
-            </button>
-
-        </div>
-
-    </div>
-    <div class="san-pham">
-
-        <img
-            src="/113.jpg"
-            alt="Chanel Coco"
-        >
-
-        <div class="thong-tin-san-pham">
-
-            <h3 class="ten-san-pham">
-                Chanel Coco
-            </h3>
-
-            <p class="danh-muc-san-pham">
-                Nước hoa nữ
-            </p>
-
-            <p class="gia-san-pham">
-                3.200.000 VNĐ
-            </p>
-
-            <button class="nut-dat-hang">
-                ĐẶT HÀNG
-            </button>
-
-        </div>
-
-    </div>
-
-    <div class="san-pham">
-
-        <img
-            src="/113.jpg"
-            alt="Chanel Coco"
-        >
-
-        <div class="thong-tin-san-pham">
-
-            <h3 class="ten-san-pham">
-                Chanel Coco
-            </h3>
-
-            <p class="danh-muc-san-pham">
-                Nước hoa nữ
-            </p>
-
-            <p class="gia-san-pham">
-                3.200.000 VNĐ
-            </p>
-
-            <button class="nut-dat-hang">
-                ĐẶT HÀNG
-            </button>
-
-        </div>
-
-    </div>
-
-
-</div>
-
-    </div>
-
-</main>
-<script src="/js/ung-dung.js"></script>
+    <!-- SCRIPTS -->
+    <script src="js/du-lieu.js"></script>
+    <script src="js/ung-dung.js"></script>
 
 </body>
+
 </html>

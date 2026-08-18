@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Trị Hệ Thống - Cửa Hàng Nước Hoa LUXURY</title>
+
+    <!-- CSS chung & CSS Quản Trị -->
+    <link rel="stylesheet" href="css/giao-dien.css">
+    <link rel="stylesheet" href="css/trang-quan-tri.css">
+</head>
+
+<body>
+
+    <!-- PHẦN ĐẦU TRANG -->
+    <header class="dau-trang">
+        <div class="logo">
+            𝓛𝓤𝓧𝓤𝓡𝓨
+        </div>
+
+        <nav class="thanh-dieu-huong">
+            <a href="trang-chu.html">𝕿𝖗𝖆𝖓𝖌 𝖈𝖍ủ</a>
+            <a href="trang-san-pham.html">𝓢ả𝓷 𝓹𝓱ẩ𝓶</a>
+            <a href="trang-don-hang.html">Đơ𝖓 𝖍à𝖓𝖌</a>
+            <a href="trang-quan-tri.html" style="color: #dfc46a; font-weight: bold;">𝕼𝖚ả𝖓 𝖙𝖗ị</a>
+        </nav>
+
+        <div class="logo-giua">
+            <img src="logo-removebg-preview.png" width="130px" alt="Luxury Perfume">
+        </div>
+
+        <div class="tai-khoan">
+            👑 𝕬𝖉𝖒𝖎𝖓
+        </div>
+    </header>
+
+    <!-- KHUNG CHÍNH TRANG QUẢN TRỊ -->
+    <main class="khung-quan-tri">
+
+        <!-- BANNER CHÀO MỪNG ADMIN -->
+        <div class="admin-banner">
+            <div class="admin-banner-title">
+                <h1>
+                    <span>Trung Tâm Quản Trị LUXURY</span>
+                    <span class="admin-badge">Admin Panel</span>
+                </h1>
+                <p>Quản lý toàn bộ danh mục sản phẩm, đơn đặt hàng và theo dõi chỉ số tăng trưởng kinh doanh thời gian thực.</p>
+            </div>
+            <div class="admin-quick-actions">
+                <button class="btn-action-primary" onclick="moModalThemSanPham()">
+                    <span>➕</span>
+                    <span>Thêm Sản Phẩm Mới</span>
+                </button>
+                <a href="trang-san-pham.html" class="btn-action-secondary" target="_blank">
+                    <span>🛍️</span>
+                    <span>Xem Cửa Hàng</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- THANH ĐIỀU HƯỚNG TABS -->
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="thong-ke">
+                <span>📊</span>
+                <span>Thống Kê & Báo Cáo</span>
+            </button>
+            <button class="tab-btn" data-tab="san-pham">
+                <span>🧴</span>
+                <span>Quản Lý Sản Phẩm</span>
+                <span class="tab-badge" id="tab-badge-products">0</span>
+            </button>
+            <button class="tab-btn" data-tab="don-hang">
+                <span>📦</span>
+                <span>Quản Lý Đơn Hàng</span>
+                <span class="tab-badge" id="tab-badge-orders">0</span>
+            </button>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- TAB 1: THỐNG KÊ & TỔNG QUAN                                      -->
+        <!-- ================================================================ -->
+        <section id="panel-thong-ke" class="tab-content-panel active">
+            
+            <!-- 4 THẺ KPI -->
+            <div class="stats-grid">
+                <div class="stat-card revenue">
+                    <div class="stat-card-header">
+                        <p>Tổng Doanh Thu</p>
+                        <span class="stat-icon">💰</span>
+                    </div>
+                    <div class="stat-value" id="kpi-revenue">0 ₫</div>
+                    <div class="stat-trend">▲ Tăng trưởng ổn định</div>
+                </div>
+
+                <div class="stat-card orders">
+                    <div class="stat-card-header">
+                        <p>Tổng Đơn Hàng</p>
+                        <span class="stat-icon">📑</span>
+                    </div>
+                    <div class="stat-value" id="kpi-orders">0</div>
+                    <div class="stat-trend">Tất cả đơn đã tạo</div>
+                </div>
+
+                <div class="stat-card pending">
+                    <div class="stat-card-header">
+                        <p>Đơn Chờ Xác Nhận</p>
+                        <span class="stat-icon">⏳</span>
+                    </div>
+                    <div class="stat-value" id="kpi-pending">0</div>
+                    <div class="stat-trend" style="color: #f7a24c;">Cần xử lý sớm</div>
+                </div>
+
+                <div class="stat-card products">
+                    <div class="stat-card-header">
+                        <p>Sản Phẩm Trong Kho</p>
+                        <span class="stat-icon">🧴</span>
+                    </div>
+                    <div class="stat-value" id="kpi-products">0</div>
+                    <div class="stat-trend">Đang kinh doanh</div>
+                </div>
+            </div>
+
+            <!-- HÀNG BIỂU ĐỒ & PHÂN BỔ TRẠNG THÁI -->
+            <div class="analytics-row">
+                
+                <!-- BIỂU ĐỒ DOANH THU -->
+                <div class="chart-card">
+                    <h3>📈 Doanh Thu Theo Tuần Này</h3>
+                    <div class="revenue-bars" id="revenue-bars-container">
+                        <!-- Render qua JS -->
+                    </div>
+                </div>
+
+                <!-- PHÂN BỔ TRẠNG THÁI ĐƠN HÀNG -->
+                <div class="chart-card">
+                    <h3>📊 Trạng Thái Đơn Hàng</h3>
+                    <div class="status-breakdown-list">
+                        
+                        <div class="status-breakdown-item">
+                            <div class="status-breakdown-info">
+                                <span style="color: #f7a24c;">⏳ Chờ xác nhận</span>
+                                <strong id="count-pending">0 đơn</strong>
+                            </div>
+                            <div class="status-progress-track">
+                                <div class="status-progress-fill fill-pending" id="progress-pending" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="status-breakdown-item">
+                            <div class="status-breakdown-info">
+                                <span style="color: #48bfe3;">🚚 Đang giao hàng</span>
+                                <strong id="count-shipping">0 đơn</strong>
+                            </div>
+                            <div class="status-progress-track">
+                                <div class="status-progress-fill fill-shipping" id="progress-shipping" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="status-breakdown-item">
+                            <div class="status-breakdown-info">
+                                <span style="color: #52b788;">✅ Đã hoàn thành</span>
+                                <strong id="count-completed">0 đơn</strong>
+                            </div>
+                            <div class="status-progress-track">
+                                <div class="status-progress-fill fill-completed" id="progress-completed" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="status-breakdown-item">
+                            <div class="status-breakdown-info">
+                                <span style="color: #ff7777;">❌ Đã hủy</span>
+                                <strong id="count-cancelled">0 đơn</strong>
+                            </div>
+                            <div class="status-progress-track">
+                                <div class="status-progress-fill fill-cancelled" id="progress-cancelled" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BẢNG TOP SẢN PHẨM BÁN CHẠY -->
+            <div class="top-products-card">
+                <h3>🏆 Top 5 Mẫu Nước Hoa Bán Chạy Nhất</h3>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Thứ hạng</th>
+                                <th>Sản phẩm</th>
+                                <th>Thương hiệu</th>
+                                <th>Giá bán</th>
+                                <th>Doanh số</th>
+                                <th>Tồn kho</th>
+                            </tr>
+                        </thead>
+                        <tbody id="top-products-tbody">
+                            <!-- Render bằng JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- TAB 2: QUẢN LÝ SẢN PHẨM (CRUD)                                   -->
+        <!-- ================================================================ -->
+        <section id="panel-san-pham" class="tab-content-panel">
+            
+            <div class="admin-card">
+                
+                <!-- THANH CÔNG CỤ TÌM KIẾM & LỌC -->
+                <div class="table-toolbar">
+                    <div class="table-search-box">
+                        <span class="table-search-icon">🔍</span>
+                        <input type="text" id="search-product-input" placeholder="Tìm theo tên nước hoa, mã sản phẩm...">
+                    </div>
+
+                    <div class="table-filters">
+                        <select id="filter-product-category" class="select-filter">
+                            <option value="all">Tất cả danh mục</option>
+                            <option value="nam">Nước hoa nam</option>
+                            <option value="nu">Nước hoa nữ</option>
+                            <option value="unisex">Nước hoa unisex</option>
+                            <option value="khuyen-mai">Sản phẩm khuyến mãi</option>
+                        </select>
+
+                        <select id="filter-product-brand" class="select-filter">
+                            <option value="all">Tất cả thương hiệu</option>
+                            <option value="dior">Dior</option>
+                            <option value="chanel">Chanel</option>
+                            <option value="gucci">Gucci</option>
+                            <option value="versace">Versace</option>
+                        </select>
+
+                        <button class="btn-action-primary" onclick="moModalThemSanPham()">
+                            <span>➕</span>
+                            <span>Thêm Sản Phẩm</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 12px; font-size: 13px; color: #9cb3c9;" id="product-result-count">
+                    Hiển thị 0 sản phẩm
+                </div>
+
+                <!-- BẢNG DANH SÁCH SẢN PHẨM -->
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Mã SP</th>
+                                <th>Sản Phẩm</th>
+                                <th>Danh Mục</th>
+                                <th>Thương Hiệu</th>
+                                <th>Giá Bán</th>
+                                <th>Tồn Kho</th>
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-products-tbody">
+                            <!-- Render bằng JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- TAB 3: QUẢN LÝ ĐƠN HÀNG                                          -->
+        <!-- ================================================================ -->
+        <section id="panel-don-hang" class="tab-content-panel">
+            
+            <div class="admin-card">
+                
+                <!-- THANH CÔNG CỤ TÌM KIẾM & LỌC ĐƠN HÀNG -->
+                <div class="table-toolbar">
+                    <div class="table-search-box">
+                        <span class="table-search-icon">🔍</span>
+                        <input type="text" id="search-order-input" placeholder="Tìm theo mã đơn (#LX-...), tên khách, SĐT...">
+                    </div>
+
+                    <div class="table-filters">
+                        <select id="filter-order-status" class="select-filter">
+                            <option value="all">Tất cả trạng thái</option>
+                            <option value="cho-xac-nhan">⏳ Chờ xác nhận</option>
+                            <option value="dang-giao">🚚 Đang giao hàng</option>
+                            <option value="hoan-thanh">✅ Đã hoàn thành</option>
+                            <option value="da-huy">❌ Đã hủy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 12px; font-size: 13px; color: #9cb3c9;" id="order-result-count">
+                    Hiển thị 0 đơn hàng
+                </div>
+
+                <!-- BẢNG DANH SÁCH ĐƠN HÀNG -->
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Mã Đơn</th>
+                                <th>Khách Hàng</th>
+                                <th>Sản Phẩm Đặt</th>
+                                <th>Ngày Đặt</th>
+                                <th>Tổng Tiền</th>
+                                <th>Trạng Thái</th>
+                                <th>Chi Tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-tbody">
+                            <!-- Render bằng JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================================================================ -->
+    <!-- MODAL THÊM / CHỈNH SỬA SẢN PHẨM                                  -->
+    <!-- ================================================================ -->
+    <div id="modal-product" class="modal-overlay">
+        <div class="modal-card">
+            
+            <div class="modal-header">
+                <h2 id="modal-product-title">✨ Thêm Sản Phẩm Nước Hoa Mới</h2>
+                <button class="modal-close" onclick="dongModalSanPham()">✖</button>
+            </div>
+
+            <form id="form-product">
+                <div class="modal-body">
+                    <div class="form-grid">
+                        
+                        <!-- Tên sản phẩm -->
+                        <div class="form-group form-group-full">
+                            <label for="prod-name">Tên Nước Hoa *</label>
+                            <input type="text" id="prod-name" class="form-input" required placeholder="VD: Dior Sauvage Eau de Parfum">
+                        </div>
+
+                        <!-- Danh mục -->
+                        <div class="form-group">
+                            <label for="prod-category">Danh Mục *</label>
+                            <select id="prod-category" class="form-select" required>
+                                <option value="nam">Nước hoa nam</option>
+                                <option value="nu">Nước hoa nữ</option>
+                                <option value="unisex">Nước hoa unisex</option>
+                                <option value="khuyen-mai">Sản phẩm khuyến mãi</option>
+                            </select>
+                        </div>
+
+                        <!-- Thương hiệu -->
+                        <div class="form-group">
+                            <label for="prod-brand">Thương Hiệu *</label>
+                            <select id="prod-brand" class="form-select" required>
+                                <option value="dior">Dior</option>
+                                <option value="chanel">Chanel</option>
+                                <option value="gucci">Gucci</option>
+                                <option value="versace">Versace</option>
+                                <option value="tom-ford">Tom Ford</option>
+                                <option value="ysl">Yves Saint Laurent</option>
+                            </select>
+                        </div>
+
+                        <!-- Giá bán -->
+                        <div class="form-group">
+                            <label for="prod-price">Giá Bán (VNĐ) *</label>
+                            <input type="number" id="prod-price" class="form-input" required min="100000" step="50000" placeholder="VD: 2950000">
+                        </div>
+
+                        <!-- Dung tích -->
+                        <div class="form-group">
+                            <label for="prod-volume">Dung Tích *</label>
+                            <input type="text" id="prod-volume" class="form-input" required placeholder="VD: 100ml hoặc 50ml">
+                        </div>
+
+                        <!-- Số lượng tồn kho -->
+                        <div class="form-group">
+                            <label for="prod-stock">Số Lượng Tồn Kho *</label>
+                            <input type="number" id="prod-stock" class="form-input" required min="0" value="20">
+                        </div>
+
+                        <!-- Sản phẩm nổi bật checkbox -->
+                        <div class="form-group" style="justify-content: center;">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-top: 15px;">
+                                <input type="checkbox" id="prod-featured" style="accent-color: #dfc46a; width: 18px; height: 18px;">
+                                <span>Hiển thị tại mục Nổi Bật Trang Chủ</span>
+                            </label>
+                        </div>
+
+                        <!-- Link hình ảnh -->
+                        <div class="form-group form-group-full">
+                            <label for="prod-image">Đường Dẫn Hình Ảnh (URL) *</label>
+                            <input type="url" id="prod-image" class="form-input" required placeholder="https://images.unsplash.com/...">
+                            <div class="image-preview-container">
+                                <img id="prod-image-preview" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Xem trước" class="image-preview" onerror="this.src=FALLBACK_PERFUME_IMG">
+                                <span style="font-size: 12px; color: #9cb3c9;">Xem trước hình ảnh sản phẩm</span>
+                            </div>
+                        </div>
+
+                        <!-- Mô tả sản phẩm -->
+                        <div class="form-group form-group-full">
+                            <label for="prod-desc">Mô Tả & Tầng Hương</label>
+                            <textarea id="prod-desc" class="form-textarea" placeholder="Nhập các tầng hương đầu, hương giữa, hương cuối và phong cách mùi hương..."></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-action-secondary" onclick="dongModalSanPham()">Hủy Bỏ</button>
+                    <button type="submit" class="btn-action-primary">💾 Lưu Sản Phẩm</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!-- MODAL XÁC NHẬN XÓA SẢN PHẨM                                     -->
+    <!-- ================================================================ -->
+    <div id="modal-delete-confirm" class="modal-overlay">
+        <div class="modal-card" style="max-width: 480px;">
+            <div class="modal-header">
+                <h2 style="color: #ff7777;">🗑️ Xác Nhận Xóa Sản Phẩm</h2>
+                <button class="modal-close" onclick="dongModalXacNhanXoa()">✖</button>
+            </div>
+            <div class="modal-body" style="text-align: center; padding: 30px 20px;">
+                <p style="font-size: 16px; margin-bottom: 12px;">Bạn có chắc chắn muốn xóa sản phẩm này?</p>
+                <p id="delete-product-name" style="font-size: 18px; font-weight: bold; color: #dfc46a; margin-bottom: 20px;"></p>
+                <p style="font-size: 13px; color: #ff9999;">Thao tác này sẽ xóa sản phẩm khỏi cả giao diện khách hàng và không thể hoàn tác.</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center;">
+                <button type="button" class="btn-action-secondary" onclick="dongModalXacNhanXoa()">Hủy</button>
+                <button type="button" class="btn-action-primary" style="background: #e63946; color: white;" onclick="thucHienXoaSanPham()">Đồng Ý Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!-- MODAL CHI TIẾT ĐƠN HÀNG                                         -->
+    <!-- ================================================================ -->
+    <div id="modal-order-detail" class="modal-overlay">
+        <div class="modal-card">
+            
+            <div class="modal-header">
+                <h2 id="modal-order-title">📦 Chi Tiết Đơn Hàng</h2>
+                <button class="modal-close" onclick="dongModalChiTietDonHang()">✖</button>
+            </div>
+
+            <div class="modal-body">
+                
+                <div class="order-detail-grid">
+                    
+                    <!-- THÔNG TIN ĐƠN -->
+                    <div class="order-info-box">
+                        <h4>📋 Thông Tin Đơn</h4>
+                        <div class="order-info-row">
+                            <span>Mã đơn hàng:</span>
+                            <strong id="detail-order-code" style="color: #dfc46a;"></strong>
+                        </div>
+                        <div class="order-info-row">
+                            <span>Thời gian đặt:</span>
+                            <span id="detail-order-date"></span>
+                        </div>
+                        <div class="order-info-row">
+                            <span>Thanh toán:</span>
+                            <span id="detail-order-payment"></span>
+                        </div>
+                    </div>
+
+                    <!-- THÔNG TIN KHÁCH HÀNG -->
+                    <div class="order-info-box">
+                        <h4>👤 Người Nhận</h4>
+                        <div class="order-info-row">
+                            <span>Họ và tên:</span>
+                            <strong id="detail-cust-name" style="color: #ffffff;"></strong>
+                        </div>
+                        <div class="order-info-row">
+                            <span>Số điện thoại:</span>
+                            <span id="detail-cust-phone"></span>
+                        </div>
+                        <div class="order-info-row">
+                            <span>Địa chỉ nhận:</span>
+                            <span id="detail-cust-address" style="text-align: right; max-width: 60%;"></span>
+                        </div>
+                        <div class="order-info-row">
+                            <span>Ghi chú:</span>
+                            <span id="detail-cust-note" style="font-style: italic; color: #dfc46a;"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- DANH SÁCH MẶT HÀNG -->
+                <div class="order-info-box">
+                    <h4>🧴 Danh Sách Nước Hoa Đã Đặt</h4>
+                    <div id="detail-order-items" class="order-items-list">
+                        <!-- Render bằng JS -->
+                    </div>
+
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #31536b;">
+                        <div class="order-info-row">
+                            <span>Tạm tính:</span>
+                            <span id="detail-subtotal"></span>
+                        </div>
+                        <div class="order-info-row">
+                            <span>Phí vận chuyển:</span>
+                            <span id="detail-shipping"></span>
+                        </div>
+                        <div class="order-info-row" style="font-size: 16px; margin-top: 8px;">
+                            <span><strong>Tổng tiền thanh toán:</strong></span>
+                            <strong id="detail-total" style="font-size: 20px; color: #dfc46a;"></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CẬP NHẬT TRẠNG THÁI TỪ MODAL -->
+                <div style="margin-top: 20px; display: flex; align-items: center; justify-content: space-between; background: rgba(11, 36, 57, 0.6); padding: 15px 20px; border-radius: 12px; border: 1px solid #31536b;">
+                    <label style="font-weight: bold; color: #dfc46a;">Cập Nhật Trạng Thái Đơn Hàng:</label>
+                    <select id="detail-order-status-select" class="form-select" style="max-width: 240px;">
+                        <option value="cho-xac-nhan">⏳ Chờ xác nhận</option>
+                        <option value="dang-giao">🚚 Đang giao hàng</option>
+                        <option value="hoan-thanh">✅ Đã hoàn thành</option>
+                        <option value="da-huy">❌ Đã hủy đơn</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-action-secondary" onclick="dongModalChiTietDonHang()">Đóng</button>
+                <button type="button" class="btn-action-primary" onclick="luuTrangThaiTuModal()">💾 Cập Nhật Trạng Thái</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- KHU VỰC THÔNG BÁO TOAST -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/du-lieu.js"></script>
+    <script src="js/quan-tri.js"></script>
+
+</body>
+
+</html>
