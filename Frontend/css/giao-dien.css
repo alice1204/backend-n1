@@ -15,7 +15,7 @@ body {
     background-color: #220a22;
 
     color: #ffffff;
-    background-image: url(/nenchinh.png);
+    background-image: url("../nenchinh.png");
 }
 
 
@@ -148,7 +148,7 @@ body {
 
     overflow: hidden;
 
-    background-image: url("/nennuochoa.png");
+    background-image: url("../nennuochoa.png");
 
     background-size: cover;
 
@@ -542,3 +542,919 @@ body {
     }
 
 }
+
+/* ==========================================================================
+   MODAL CHI TIẾT SẢN PHẨM (LUXURY PRODUCT DETAIL MODAL)
+   ========================================================================== */
+
+.modal-san-pham-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 5, 15, 0.85);
+    backdrop-filter: blur(12px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-san-pham-overlay.hien-thi {
+    display: flex;
+    animation: fadeInModal 0.25s ease forwards;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-san-pham-box {
+    background: linear-gradient(145deg, #0d2133 0%, #1e0d26 100%);
+    border: 1px solid #c54b80;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 920px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(197, 75, 128, 0.25);
+    position: relative;
+    animation: modalPopUp 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+    color: #ffffff;
+}
+
+@keyframes modalPopUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-san-pham-dong {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #31536b;
+    background: rgba(16, 43, 64, 0.8);
+    color: #dfc46a;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    z-index: 10;
+}
+
+.modal-san-pham-dong:hover {
+    background: #c54b80;
+    color: #ffffff;
+    border-color: #c54b80;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.modal-san-pham-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 35px;
+    padding: 35px;
+}
+
+/* Cột trái: Hình ảnh & Badge */
+.modal-san-pham-trai {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-anh-khung {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #020b12;
+    border: 1px solid #31536b;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.modal-anh-khung img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.modal-anh-khung:hover img {
+    transform: scale(1.06);
+}
+
+.modal-badge-chinh-hang {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #dfc46a, #c54b80);
+    color: #111111;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.modal-cam-ket {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background: rgba(16, 43, 64, 0.6);
+    border: 1px solid #31536b;
+    border-radius: 14px;
+    padding: 12px 15px;
+}
+
+.modal-cam-ket-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #b0c4d8;
+}
+
+.modal-cam-ket-item span:first-child {
+    font-size: 16px;
+}
+
+/* Cột phải: Thông tin chi tiết */
+.modal-san-pham-phai {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal-thuong-hieu-tag {
+    display: inline-block;
+    color: #dfc46a;
+    background: rgba(223, 196, 106, 0.12);
+    border: 1px solid rgba(223, 196, 106, 0.4);
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.modal-ten-san-pham {
+    font-size: 26px;
+    margin: 0 0 10px;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.modal-danh-gia-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #9cb3c9;
+}
+
+.modal-sao {
+    color: #ffb703;
+    letter-spacing: 2px;
+}
+
+.modal-gia-block {
+    background: rgba(16, 43, 64, 0.7);
+    border: 1px solid #31536b;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.modal-gia-chinh {
+    font-size: 28px;
+    font-weight: 800;
+    color: #dfc46a;
+    letter-spacing: 0.5px;
+}
+
+.modal-gia-goc {
+    font-size: 16px;
+    color: #8b9fb3;
+    text-decoration: line-through;
+}
+
+.modal-tinh-trang-kho {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 700;
+    color: #52b788;
+    background: rgba(82, 183, 136, 0.15);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+/* Tầng hương & Thông số */
+.modal-thong-so-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.modal-thong-so-item {
+    background: rgba(7, 23, 36, 0.6);
+    border: 1px solid rgba(49, 83, 107, 0.6);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.modal-thong-so-item span {
+    display: block;
+    font-size: 11px;
+    color: #8b9fb3;
+    margin-bottom: 4px;
+}
+
+.modal-thong-so-item strong {
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.modal-mo-ta-khung {
+    background: rgba(7, 23, 36, 0.5);
+    border: 1px solid rgba(49, 83, 107, 0.5);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+}
+
+.modal-mo-ta-khung h4 {
+    margin: 0 0 6px;
+    font-size: 13px;
+    color: #dfc46a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-mo-ta-khung p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #d1dce5;
+}
+
+/* Khu vực chọn số lượng & Đặt mua */
+.modal-thao-tac-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.modal-so-luong-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #31536b;
+    background: #071724;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-btn-so-luong {
+    width: 40px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    color: #dfc46a;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.modal-btn-so-luong:hover {
+    background: rgba(223, 196, 106, 0.2);
+}
+
+.modal-input-so-luong {
+    width: 45px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+}
+
+.modal-btn-dat-hang {
+    flex: 1;
+    height: 44px;
+    background: linear-gradient(135deg, #dfc46a, #c54b80);
+    color: #111111;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(223, 196, 106, 0.35);
+}
+
+.modal-btn-dat-hang:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(223, 196, 106, 0.5);
+    background: linear-gradient(135deg, #f0d87f, #df5c99);
+}
+
+/* Nút Quick View trên Card sản phẩm */
+.the-san-pham, .san-pham {
+    position: relative;
+    cursor: pointer;
+}
+
+.nut-xem-nhanh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: transparent;
+    color: #dfc46a;
+    border: 1px solid rgba(223, 196, 106, 0.4);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.nut-xem-nhanh:hover {
+    background: rgba(223, 196, 106, 0.15);
+    border-color: #dfc46a;
+    color: #ffffff;
+}
+
+/* Responsive Modal Chi Tiết */
+@media (max-width: 820px) {
+    .modal-san-pham-grid {
+        grid-template-columns: 1fr;
+        padding: 25px 20px;
+        gap: 25px;
+    }
+
+    .modal-anh-khung {
+        height: 280px;
+    }
+
+    .modal-ten-san-pham {
+        font-size: 22px;
+    }
+
+    .modal-gia-chinh {
+        font-size: 24px;
+    }
+}
+
+/* ==========================================================================
+   MODAL ĐẶT HÀNG & THANH TOÁN (LUXURY CHECKOUT MODAL)
+   ========================================================================== */
+
+.modal-dat-hang-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 5, 15, 0.88);
+    backdrop-filter: blur(14px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-dat-hang-overlay.hien-thi {
+    display: flex;
+    animation: fadeInModal 0.25s ease forwards;
+}
+
+.modal-dat-hang-box {
+    background: linear-gradient(145deg, #0d2133 0%, #1e0d26 100%);
+    border: 1px solid #c54b80;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(223, 196, 106, 0.2);
+    position: relative;
+    animation: modalPopUp 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+    color: #ffffff;
+}
+
+.modal-dat-hang-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 30px;
+    border-bottom: 1px solid #31536b;
+    background: linear-gradient(135deg, rgba(75, 20, 89, 0.6), rgba(16, 43, 64, 0.6));
+}
+
+.modal-dat-hang-header h3 {
+    margin: 0;
+    font-size: 22px;
+    color: #dfc46a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-dat-hang-dong {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #31536b;
+    background: rgba(16, 43, 64, 0.8);
+    color: #dfc46a;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.modal-dat-hang-dong:hover {
+    background: #c54b80;
+    color: #ffffff;
+    border-color: #c54b80;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.modal-dat-hang-body {
+    padding: 28px 30px;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 28px;
+}
+
+/* Khung form người nhận */
+.checkout-section-title {
+    margin: 0 0 16px;
+    font-size: 16px;
+    color: #dfc46a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(49, 83, 107, 0.6);
+    padding-bottom: 8px;
+}
+
+.checkout-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.checkout-form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #dfc46a;
+}
+
+.checkout-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: #071724;
+    border: 1px solid #31536b;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.25s;
+    box-sizing: border-box;
+}
+
+.checkout-input:focus {
+    border-color: #dfc46a;
+    box-shadow: 0 0 12px rgba(223, 196, 106, 0.3);
+    background: #091d2e;
+}
+
+/* Phương thức thanh toán */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.payment-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: rgba(11, 36, 57, 0.6);
+    border: 1px solid #31536b;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.payment-card:hover {
+    border-color: #dfc46a;
+    background: rgba(11, 36, 57, 0.85);
+}
+
+.payment-card.active {
+    border-color: #dfc46a;
+    background: rgba(223, 196, 106, 0.12);
+    box-shadow: 0 0 15px rgba(223, 196, 106, 0.2);
+}
+
+.payment-card input[type="radio"] {
+    accent-color: #dfc46a;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.payment-card-content {
+    flex: 1;
+}
+
+.payment-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.payment-card-desc {
+    font-size: 12px;
+    color: #9cb3c9;
+}
+
+/* Cột phải: Tóm tắt đơn hàng */
+.checkout-summary-card {
+    background: rgba(11, 36, 57, 0.7);
+    border: 1px solid #31536b;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.checkout-prod-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(49, 83, 107, 0.6);
+}
+
+.checkout-prod-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid #31536b;
+    background: #020b12;
+    flex-shrink: 0;
+}
+
+.checkout-prod-info {
+    flex: 1;
+}
+
+.checkout-prod-info h4 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.checkout-prod-info p {
+    margin: 0 0 6px;
+    font-size: 12px;
+    color: #9cb3c9;
+}
+
+.checkout-prod-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: #dfc46a;
+}
+
+/* Bộ chọn số lượng trong checkout */
+.checkout-qty-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.checkout-qty-stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #31536b;
+    background: #071724;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.checkout-qty-btn {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    color: #dfc46a;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.checkout-qty-btn:hover {
+    background: rgba(223, 196, 106, 0.2);
+}
+
+.checkout-qty-input {
+    width: 36px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Voucher box */
+.checkout-voucher-row {
+    display: flex;
+    gap: 8px;
+}
+
+.checkout-voucher-input {
+    flex: 1;
+    padding: 10px 12px;
+    background: #071724;
+    border: 1px dashed #4a6a84;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.checkout-voucher-btn {
+    padding: 10px 15px;
+    background: rgba(223, 196, 106, 0.15);
+    color: #dfc46a;
+    border: 1px solid #dfc46a;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.checkout-voucher-btn:hover {
+    background: #dfc46a;
+    color: #102b40;
+}
+
+/* Quà tặng banner */
+.checkout-gift-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(197, 75, 128, 0.15);
+    border: 1px solid rgba(197, 75, 128, 0.4);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #f7b2d9;
+}
+
+/* Bảng tính tiền */
+.checkout-totals-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(49, 83, 107, 0.6);
+}
+
+.checkout-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #b0c4d8;
+}
+
+.checkout-total-row.final {
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid #31536b;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.checkout-total-row.final strong:last-child {
+    font-size: 24px;
+    color: #dfc46a;
+}
+
+/* Nút đặt hàng to */
+.btn-xac-nhan-dat-hang {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #dfc46a, #c54b80);
+    color: #111111;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(223, 196, 106, 0.4);
+    letter-spacing: 0.5px;
+}
+
+.btn-xac-nhan-dat-hang:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(223, 196, 106, 0.55);
+    background: linear-gradient(135deg, #f0d87f, #e05c96);
+}
+
+.checkout-trust-guarantee {
+    text-align: center;
+    font-size: 11px;
+    color: #8b9fb3;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   MODAL ĐẶT HÀNG THÀNH CÔNG (SUCCESS CELEBRATION MODAL)
+   ========================================================================== */
+.modal-thanh-cong-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 5, 15, 0.9);
+    backdrop-filter: blur(15px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-thanh-cong-overlay.hien-thi {
+    display: flex;
+    animation: fadeInModal 0.3s ease forwards;
+}
+
+.modal-thanh-cong-box {
+    background: linear-gradient(145deg, #0d2133 0%, #1e0d26 100%);
+    border: 1px solid #52b788;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 520px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(82, 183, 136, 0.25);
+    animation: modalPopUp 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+    color: #ffffff;
+}
+
+.success-icon-circle {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #52b788, #2a9d8f);
+    color: #ffffff;
+    font-size: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 25px rgba(82, 183, 136, 0.5);
+    animation: pulseSuccess 2s infinite ease-in-out;
+}
+
+@keyframes pulseSuccess {
+    0% { transform: scale(1); box-shadow: 0 0 20px rgba(82, 183, 136, 0.4); }
+    50% { transform: scale(1.06); box-shadow: 0 0 30px rgba(82, 183, 136, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 0 20px rgba(82, 183, 136, 0.4); }
+}
+
+.success-order-code {
+    display: inline-block;
+    background: rgba(223, 196, 106, 0.15);
+    border: 1px solid #dfc46a;
+    color: #dfc46a;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 800;
+    margin: 12px 0 18px;
+}
+
+.success-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-success-primary {
+    flex: 1;
+    padding: 13px;
+    background: linear-gradient(135deg, #dfc46a, #c54b80);
+    color: #111111;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-success-primary:hover {
+    background: #f0d87f;
+    transform: translateY(-2px);
+}
+
+.btn-success-secondary {
+    flex: 1;
+    padding: 13px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid #31536b;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.btn-success-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #dfc46a;
+}
+
+@media (max-width: 768px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+

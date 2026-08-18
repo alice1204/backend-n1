@@ -583,3 +583,349 @@
     }
 
 }
+
+/* ==========================================================================
+   MODAL CHI TIẾT ĐƠN HÀNG (LUXURY ORDER DETAIL MODAL)
+   ========================================================================== */
+
+.modal-don-hang-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 5, 15, 0.85);
+    backdrop-filter: blur(12px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-don-hang-overlay.hien-thi {
+    display: flex;
+    animation: fadeInModal 0.25s ease forwards;
+}
+
+.modal-don-hang-box {
+    background: linear-gradient(145deg, #0d2133 0%, #1e0d26 100%);
+    border: 1px solid #c54b80;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 820px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(197, 75, 128, 0.25);
+    position: relative;
+    animation: modalPopUp 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+    color: #ffffff;
+}
+
+.modal-don-hang-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 28px;
+    border-bottom: 1px solid #31536b;
+    background: linear-gradient(135deg, rgba(75, 20, 89, 0.5), rgba(16, 43, 64, 0.5));
+}
+
+.modal-don-hang-header h3 {
+    margin: 0;
+    font-size: 21px;
+    color: #dfc46a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-don-hang-dong {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #31536b;
+    background: rgba(16, 43, 64, 0.8);
+    color: #dfc46a;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.modal-don-hang-dong:hover {
+    background: #c54b80;
+    color: #ffffff;
+    border-color: #c54b80;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.modal-don-hang-body {
+    padding: 28px;
+}
+
+/* ==========================================================================
+   TIMELINE THEO DÕI HÀNH TRÌNH ĐƠN HÀNG
+   ========================================================================== */
+.order-tracking-timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    margin: 10px 0 30px;
+    padding: 0 10px;
+}
+
+.order-tracking-timeline::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 45px;
+    right: 45px;
+    height: 3px;
+    background: #25445d;
+    z-index: 1;
+}
+
+.tracking-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+}
+
+.tracking-step-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #0b2439;
+    border: 2px solid #31536b;
+    color: #9cb3c9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+}
+
+.tracking-step.active .tracking-step-circle {
+    background: linear-gradient(135deg, #dfc46a, #c54b80);
+    border-color: #dfc46a;
+    color: #111111;
+    box-shadow: 0 0 15px rgba(223, 196, 106, 0.5);
+}
+
+.tracking-step.cancelled .tracking-step-circle {
+    background: #e63946;
+    border-color: #e63946;
+    color: #ffffff;
+}
+
+.tracking-step-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9cb3c9;
+}
+
+.tracking-step.active .tracking-step-label {
+    color: #dfc46a;
+    font-weight: 700;
+}
+
+.tracking-step.cancelled .tracking-step-label {
+    color: #ff7777;
+}
+
+/* 2 Hộp Thông Tin */
+.modal-order-grid-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.modal-info-card {
+    background: rgba(11, 36, 57, 0.7);
+    border: 1px solid #31536b;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.modal-info-card h4 {
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: #dfc46a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(49, 83, 107, 0.6);
+    padding-bottom: 8px;
+}
+
+.modal-info-card-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.modal-info-card-row span:first-child {
+    color: #9cb3c9;
+}
+
+/* Danh Sách Món Trong Modal */
+.modal-order-items-box {
+    background: rgba(11, 36, 57, 0.7);
+    border: 1px solid #31536b;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 24px;
+}
+
+.modal-order-items-box h4 {
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: #dfc46a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(49, 83, 107, 0.6);
+    padding-bottom: 8px;
+}
+
+.modal-item-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(49, 83, 107, 0.4);
+}
+
+.modal-item-row:last-child {
+    border-bottom: none;
+}
+
+.modal-item-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #31536b;
+    background: #020b12;
+    flex-shrink: 0;
+}
+
+.modal-item-info {
+    flex: 1;
+}
+
+.modal-item-info h5 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.modal-item-info p {
+    margin: 0;
+    font-size: 13px;
+    color: #9cb3c9;
+}
+
+.modal-item-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #dfc46a;
+}
+
+/* Tổng kết giá tiền */
+.modal-order-pricing {
+    background: rgba(7, 23, 36, 0.6);
+    border: 1px solid rgba(49, 83, 107, 0.6);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 15px;
+}
+
+.modal-pricing-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.modal-pricing-row.total {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #31536b;
+    font-size: 16px;
+}
+
+.modal-pricing-row.total strong:last-child {
+    font-size: 22px;
+    color: #dfc46a;
+}
+
+/* Modal Footer */
+.modal-don-hang-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 18px 28px;
+    border-top: 1px solid #31536b;
+    background: rgba(11, 36, 57, 0.5);
+}
+
+.modal-btn-huy-don {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #ff7777;
+    color: #ff7777;
+    border-radius: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.modal-btn-huy-don:hover {
+    background: #ff7777;
+    color: #ffffff;
+}
+
+.modal-btn-dong {
+    padding: 10px 22px;
+    background: #dfc46a;
+    border: none;
+    color: #102b40;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.modal-btn-dong:hover {
+    background: #f0d87f;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+    .modal-order-grid-info {
+        grid-template-columns: 1fr;
+    }
+
+    .order-tracking-timeline {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .order-tracking-timeline::before {
+        display: none;
+    }
+}

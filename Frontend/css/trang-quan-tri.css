@@ -1,0 +1,964 @@
+/* ==========================================================================
+   GIAO DIỆN QUẢN TRỊ VIÊN (ADMIN DASHBOARD) - LUXURY PERFUME STORE
+   ========================================================================== */
+
+/* Layout chính của trang Quản Trị */
+.khung-quan-tri {
+    max-width: 1380px;
+    margin: 30px auto;
+    padding: 0 25px 60px;
+    color: #ffffff;
+}
+
+/* Header Admin Banner */
+.admin-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(75, 20, 89, 0.85), rgba(16, 43, 64, 0.95));
+    border: 1px solid #c54b80;
+    border-radius: 18px;
+    padding: 22px 30px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+}
+
+.admin-banner-title h1 {
+    font-size: 26px;
+    margin: 0 0 6px;
+    color: #dfc46a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-banner-title p {
+    margin: 0;
+    font-size: 14px;
+    color: #dca8c7;
+    opacity: 0.9;
+}
+
+.admin-badge {
+    background: linear-gradient(135deg, #dfc46a, #c54b80);
+    color: #111111;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.admin-quick-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-action-primary {
+    background: linear-gradient(135deg, #dfc46a, #e2a03f);
+    color: #0b1a28;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(223, 196, 106, 0.3);
+}
+
+.btn-action-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(223, 196, 106, 0.45);
+    background: #f0d87f;
+}
+
+.btn-action-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid #4a6378;
+    padding: 11px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-action-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #dfc46a;
+    color: #dfc46a;
+}
+
+/* ==========================================================================
+   NAVIGATION TABS (CHUYỂN TAB TRANG QUẢN TRỊ)
+   ========================================================================== */
+.admin-tabs {
+    display: flex;
+    gap: 12px;
+    background: rgba(16, 43, 64, 0.7);
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid #31536b;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    flex: 1;
+    min-width: 180px;
+    padding: 13px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    color: #b0c4d8;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.25s ease;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #dfc46a, #c54b80);
+    color: #111111;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(223, 196, 106, 0.3);
+}
+
+.tab-badge {
+    background: rgba(0, 0, 0, 0.35);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tab-btn.active .tab-badge {
+    background: #111111;
+    color: #dfc46a;
+}
+
+/* Quản lý hiển thị tab */
+.tab-content-panel {
+    display: none;
+    animation: fadeIn 0.35s ease forwards;
+}
+
+.tab-content-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   TAB 1: THỐNG KÊ (DASHBOARD ANALYTICS)
+   ========================================================================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: rgba(16, 43, 64, 0.85);
+    border: 1px solid #31536b;
+    border-radius: 18px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: #dfc46a;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #dfc46a;
+}
+
+.stat-card.revenue::before { background: #dfc46a; }
+.stat-card.orders::before { background: #48bfe3; }
+.stat-card.pending::before { background: #f77f00; }
+.stat-card.products::before { background: #c54b80; }
+
+.stat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.stat-card-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #9cb3c9;
+    font-weight: 500;
+}
+
+.stat-icon {
+    font-size: 24px;
+}
+
+.stat-value {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 8px;
+}
+
+.stat-card.revenue .stat-value { color: #dfc46a; }
+.stat-card.pending .stat-value { color: #f7a24c; }
+
+.stat-trend {
+    font-size: 12px;
+    color: #85d996;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Charts & Analytics Row */
+.analytics-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.chart-card {
+    background: rgba(16, 43, 64, 0.85);
+    border: 1px solid #31536b;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.chart-card h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    color: #dfc46a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Custom Revenue Bar Chart */
+.revenue-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 220px;
+    padding-top: 30px;
+    gap: 15px;
+    border-bottom: 1px solid #31536b;
+}
+
+.bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.bar-fill {
+    width: 100%;
+    max-width: 42px;
+    background: linear-gradient(180deg, #dfc46a, #c54b80);
+    border-radius: 6px 6px 0 0;
+    transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    cursor: pointer;
+}
+
+.bar-fill:hover {
+    background: linear-gradient(180deg, #f0d87f, #e05c96);
+    box-shadow: 0 0 15px rgba(223, 196, 106, 0.5);
+}
+
+.bar-tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000000;
+    color: #dfc46a;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.bar-col:hover .bar-tooltip {
+    opacity: 1;
+}
+
+.bar-label {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #9cb3c9;
+}
+
+/* Status Breakdown List */
+.status-breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.status-breakdown-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.status-breakdown-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.status-progress-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.status-progress-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.6s ease;
+}
+
+.fill-pending { background: #f7a24c; }
+.fill-shipping { background: #48bfe3; }
+.fill-completed { background: #52b788; }
+.fill-cancelled { background: #e63946; }
+
+/* Top Products Table */
+.top-products-card {
+    background: rgba(16, 43, 64, 0.85);
+    border: 1px solid #31536b;
+    border-radius: 18px;
+    padding: 24px;
+}
+
+.top-products-card h3 {
+    margin: 0 0 18px;
+    font-size: 18px;
+    color: #dfc46a;
+}
+
+/* ==========================================================================
+   BẢNG DỮ LIỆU CHUNG (DATA TABLES)
+   ========================================================================== */
+.admin-card {
+    background: rgba(16, 43, 64, 0.88);
+    border: 1px solid #31536b;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+}
+
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+}
+
+.table-search-box {
+    position: relative;
+    flex: 1;
+    min-width: 260px;
+    max-width: 400px;
+}
+
+.table-search-box input {
+    width: 100%;
+    padding: 11px 16px 11px 40px;
+    background: rgba(11, 36, 57, 0.8);
+    border: 1px solid #31536b;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.table-search-box input:focus {
+    border-color: #dfc46a;
+    box-shadow: 0 0 12px rgba(223, 196, 106, 0.25);
+}
+
+.table-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7b93a7;
+    pointer-events: none;
+}
+
+.table-filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.select-filter {
+    padding: 11px 16px;
+    background: rgba(11, 36, 57, 0.8);
+    border: 1px solid #31536b;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.select-filter:focus {
+    border-color: #dfc46a;
+}
+
+.select-filter option {
+    background: #0b2439;
+    color: #ffffff;
+}
+
+/* Custom Table Design */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.admin-table th {
+    background: rgba(11, 36, 57, 0.9);
+    color: #dfc46a;
+    padding: 14px 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #31536b;
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(49, 83, 107, 0.6);
+    vertical-align: middle;
+    color: #e4eaf0;
+}
+
+.admin-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Product Thumbnail Cell */
+.product-cell {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.product-thumb {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #31536b;
+    background: #020b12;
+    flex-shrink: 0;
+}
+
+.product-info-name {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 3px;
+}
+
+.product-info-id {
+    font-size: 12px;
+    color: #8b9fb3;
+}
+
+.price-text {
+    font-weight: 700;
+    color: #dfc46a;
+}
+
+/* Stock Status Badges */
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.badge-in-stock {
+    background: rgba(82, 183, 136, 0.15);
+    color: #52b788;
+    border: 1px solid rgba(82, 183, 136, 0.4);
+}
+
+.badge-low-stock {
+    background: rgba(247, 127, 0, 0.15);
+    color: #f7a24c;
+    border: 1px solid rgba(247, 127, 0, 0.4);
+}
+
+.badge-out-stock {
+    background: rgba(230, 57, 70, 0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(230, 57, 70, 0.4);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid #31536b;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    transform: scale(1.1);
+}
+
+.btn-edit:hover {
+    background: #dfc46a;
+    color: #102b40;
+    border-color: #dfc46a;
+}
+
+.btn-delete:hover {
+    background: #e63946;
+    color: #ffffff;
+    border-color: #e63946;
+}
+
+.btn-view:hover {
+    background: #48bfe3;
+    color: #102b40;
+    border-color: #48bfe3;
+}
+
+/* Status Select Dropdown in Table */
+.status-select {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid;
+    outline: none;
+    cursor: pointer;
+    background-color: #102b40;
+}
+
+.status-select.cho-xac-nhan {
+    color: #f2cf62;
+    border-color: rgba(223, 196, 106, 0.5);
+    background: rgba(223, 196, 106, 0.12);
+}
+
+.status-select.dang-giao {
+    color: #48bfe3;
+    border-color: rgba(72, 191, 227, 0.5);
+    background: rgba(72, 191, 227, 0.12);
+}
+
+.status-select.hoan-thanh {
+    color: #52b788;
+    border-color: rgba(82, 183, 136, 0.5);
+    background: rgba(82, 183, 136, 0.12);
+}
+
+.status-select.da-huy {
+    color: #ff7777;
+    border-color: rgba(255, 119, 119, 0.5);
+    background: rgba(255, 119, 119, 0.12);
+}
+
+/* ==========================================================================
+   MODAL DIALOGS (FORM THÊM/SỬA SẢN PHẨM & XEM CHI TIẾT ĐƠN HÀNG)
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-card {
+    background: #0e2030;
+    border: 1px solid #c54b80;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    animation: modalSlide 0.3s ease;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: translateY(-20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #31536b;
+    background: linear-gradient(135deg, rgba(75, 20, 89, 0.5), rgba(16, 43, 64, 0.5));
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #dfc46a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: #9cb3c9;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #ff7777;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 18px 25px;
+    border-top: 1px solid #31536b;
+    background: rgba(11, 36, 57, 0.4);
+}
+
+/* Form Controls Inside Modal */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #dfc46a;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 11px 14px;
+    background: #071724;
+    border: 1px solid #31536b;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: #dfc46a;
+    box-shadow: 0 0 10px rgba(223, 196, 106, 0.25);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.image-preview-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.image-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #31536b;
+    background: #020b12;
+}
+
+/* Order Detail Modal Styling */
+.order-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.order-info-box {
+    background: rgba(11, 36, 57, 0.6);
+    border: 1px solid #31536b;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.order-info-box h4 {
+    margin: 0 0 12px;
+    color: #dfc46a;
+    font-size: 15px;
+    border-bottom: 1px solid #31536b;
+    padding-bottom: 8px;
+}
+
+.order-info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.order-info-row span:first-child {
+    color: #9cb3c9;
+}
+
+.order-items-list {
+    margin-top: 15px;
+}
+
+.order-item-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(49, 83, 107, 0.4);
+}
+
+.order-item-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.order-item-meta {
+    flex: 1;
+}
+
+.order-item-meta h5 {
+    margin: 0 0 4px;
+    font-size: 14px;
+}
+
+.order-item-meta p {
+    margin: 0;
+    font-size: 12px;
+    color: #9cb3c9;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION (THÔNG BÁO TỨC THÌ)
+   ========================================================================== */
+.toast-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: #0e2030;
+    color: #ffffff;
+    border-left: 4px solid #dfc46a;
+    border: 1px solid #31536b;
+    border-left-width: 5px;
+    border-radius: 10px;
+    padding: 14px 20px;
+    min-width: 280px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: toastIn 0.3s ease;
+    font-size: 14px;
+}
+
+.toast.toast-success { border-left-color: #52b788; }
+.toast.toast-danger { border-left-color: #e63946; }
+.toast.toast-info { border-left-color: #48bfe3; }
+
+@keyframes toastIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .analytics-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .khung-quan-tri {
+        padding: 0 15px 40px;
+    }
+    
+    .admin-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+    
+    .admin-quick-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .admin-tabs {
+        flex-direction: column;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .order-detail-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .table-search-box {
+        max-width: 100%;
+    }
+}

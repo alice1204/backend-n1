@@ -3,150 +3,77 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa hàng nước hoa LUXURY</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Cửa hàng nước hoa</title>
-
-    <link rel="stylesheet"
-          href="/css/giao-dien.css">
-    <link rel="stylesheet"
-      href="/css/trang-san-pham.css">
+    <link rel="stylesheet" href="css/giao-dien.css">
+    <link rel="stylesheet" href="css/trang-san-pham.css">
 </head>
-
 
 <body>
 
     <!-- PHẦN ĐẦU TRANG -->
     <header class="dau-trang">
-
-        <div class="logo" >
+        <div class="logo">
             𝓛𝓤𝓧𝓤𝓡𝓨
-
         </div>
 
-
         <nav class="thanh-dieu-huong">
-            <a href="trang-chu.html">
-                𝕿𝖗𝖆𝖓𝖌 𝖈𝖍ủ
-            </a>
-
-            <a href="trang-san-pham.html">
-                𝓢ả𝓷 𝓹𝓱ẩ𝓶
-            </a>
-
-            <a href="trang-don-hang.html">
-                Đơ𝖓 𝖍à𝖓𝖌
-            </a>
-
-            <a href="trang-quan-tri.html">
-                Đ𝖎ề𝖚 𝖐𝖍𝖔ả𝖓 𝖛à 𝖌𝖎ớ𝖎 𝖙𝖍𝖎ệ𝖚
-            </a>
-
+            <a href="trang-chu.html" style="color: #6e62f1; font-weight: bold;">𝕿𝖗𝖆𝖓𝖌 𝖈𝖍ủ</a>
+            <a href="trang-san-pham.html">𝓢ả𝓷 𝓹𝓱ẩ𝓶</a>
+            <a href="trang-don-hang.html">Đơ𝖓 𝖍à𝖓𝖌</a>
+            <a href="trang-quan-tri.html">𝕼𝖚ả𝖓 𝖙𝖗ị</a>
         </nav>
+
         <div class="logo-giua">
-            <img src="/logo-removebg-preview.png" width="130px">
+            <img src="logo-removebg-preview.png" width="130px" alt="Luxury Logo">
         </div>
 
         <div class="tai-khoan">
-            𝕿à𝖎 𝖐𝖍𝖔ả𝖓
+            <a href="trang-quan-tri.html" style="color: #070707; text-decoration: none;">𝕿à𝖎 𝖐𝖍𝖔ả𝖓</a>
         </div>
-
     </header>
-
-
 
     <!-- PHẦN GIỚI THIỆU -->
     <section class="gioi-thieu">
-        
         <div>
-
-            <h1>
-                𝓚𝓗Ử 𝓗Ô𝓘 𝓥À 𝓛À𝓜 𝓣𝓗Ơ𝓜
-            </h1>
-
-            <p>
-                𝔗ì𝔪 𝔨𝔦ế𝔪 𝔪ù𝔦 𝔥ươ𝔫𝔤 𝔭𝔥ù 𝔥ợ𝔭 𝔳ớ𝔦 𝔭𝔥𝔬𝔫𝔤 𝔠á𝔠𝔥 𝔠ủ𝔞 𝔟ạ𝔫.
-            </p>
-
-            <button class="nut-chinh">
-                KHÁM PHÁ NGAY
-            </button>
-
+            <h1>𝓚𝓗Ử 𝓗Ô𝓘 𝓥À 𝓛À𝓜 𝓣𝓗Ơ𝓜</h1>
+            <p>𝔗ì𝔪 𝔨𝔦ế𝔪 𝔪ù𝔦 𝔥ươ𝔫𝔤 𝔭𝔥ù 𝔥ợ𝔭 𝔳ớ𝔦 𝔭𝔥𝔬𝔫𝔤 𝔠á𝔠𝔥 𝔠ủ𝔞 𝔟ạ𝔫.</p>
+            <a href="trang-san-pham.html">
+                <button class="nut-chinh">KHÁM PHÁ NGAY</button>
+            </a>
         </div>
-
     </section>
 
-
-
-    <!-- DANH SÁCH SẢN PHẨM -->
+    <!-- DANH SÁCH SẢN PHẨM NỔI BẬT -->
     <main class="noi-dung">
-
         <div class="tieu-de-khu-vuc">
+            <h2>𝖕𝖊𝖗𝖋𝖚𝖒𝖊 𝖕𝖗𝖔𝖉𝖚𝖈𝖙𝖘</h2>
 
-    <h2>
-        𝖕𝖊𝖗𝖋𝖚𝖒𝖊 𝖕𝖗𝖔𝖉𝖚𝖈𝖙𝖘
-    </h2>
+            <!-- NÚT 3 CHẤM -->
+            <div class="khu-vuc-danh-muc">
+                <button class="nut-ba-cham" onclick="moDanhMuc()">⋮</button>
 
-    <!-- NÚT 3 CHẤM -->
-    <div class="khu-vuc-danh-muc">
-
-        <button
-            class="nut-ba-cham"
-            onclick="moDanhMuc()"
-        >
-            ⋮
-        </button>
-
-
-        <!-- MENU DANH MỤC -->
-        <div
-            id="danh-sach-danh-muc"
-            class="danh-sach-danh-muc"
-        >
-
-            <button>
-                Tất cả sản phẩm
-            </button>
-
-            <button>
-                Nước hoa nam
-            </button>
-
-            <button>
-                Nước hoa nữ
-            </button>
-
-            <button>
-                Nước hoa unisex
-            </button>
-
-            <button>
-                Sản phẩm khuyến mãi
-            </button>
-
+                <!-- MENU DANH MỤC -->
+                <div id="danh-sach-danh-muc" class="danh-sach-danh-muc">
+                    <button onclick="locDanhMucTrangChu('tat-ca')">Tất cả sản phẩm</button>
+                    <button onclick="locDanhMucTrangChu('nam')">Nước hoa nam</button>
+                    <button onclick="locDanhMucTrangChu('nu')">Nước hoa nữ</button>
+                    <button onclick="locDanhMucTrangChu('unisex')">Nước hoa unisex</button>
+                    <button onclick="locDanhMucTrangChu('khuyen-mai')">Sản phẩm khuyến mãi</button>
+                </div>
+            </div>
         </div>
 
-    </div>
-
-</div>
-
-
-     <!-- SẢN PHẨM NỔI BẬT -->
-
-    <div id="danh-sach-san-pham">
-        
-    </div>
-
-    
-</div>
-
+        <!-- SẢN PHẨM NỔI BẬT ĐƯỢC TẢI ĐỘNG TỪ LOCALSTORAGE -->
+        <div id="danh-sach-san-pham">
+            <!-- Tải tự động qua ung-dung.js -->
+        </div>
     </main>
 
-
-
-    <script src="/js/ung-dung.js"></script>
+    <!-- SCRIPTS -->
+    <script src="js/du-lieu.js"></script>
+    <script src="js/ung-dung.js"></script>
 
 </body>
 
