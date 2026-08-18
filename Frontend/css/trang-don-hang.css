@@ -1,0 +1,585 @@
+/* =========================================
+   TRANG ĐƠN HÀNG
+========================================= */
+
+
+/* KHUNG CHÍNH */
+
+.khu-vuc-don-hang {
+
+    max-width: 1200px;
+
+    margin: 45px auto;
+
+    padding: 0 25px 60px;
+
+    color: white;
+}
+
+
+
+/* =========================================
+   TIÊU ĐỀ
+========================================= */
+
+.tieu-de-don-hang {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.tieu-de-don-hang .chu-nho {
+
+    margin-bottom: 8px;
+
+    font-size: 15px;
+
+    opacity: 0.65;
+
+    letter-spacing: 1px;
+}
+
+
+.tieu-de-don-hang h1 {
+
+    margin: 0 0 12px;
+
+    font-size: 32px;
+
+    letter-spacing: 1px;
+}
+
+
+.mo-ta-don-hang {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    opacity: 0.7;
+}
+
+
+
+/* =========================================
+   4 Ô THỐNG KÊ
+========================================= */
+
+.thong-ke-don-hang {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+
+.o-thong-ke {
+
+    padding: 22px;
+
+    background: rgba(16, 43, 64, 0.9);
+
+    border: 1px solid #31536b;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+
+.o-thong-ke:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #dfc46a;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+.o-thong-ke p {
+
+    margin: 0 0 10px;
+
+    font-size: 14px;
+
+    opacity: 0.7;
+}
+
+
+.o-thong-ke strong {
+
+    font-size: 28px;
+
+    color: #dfc46a;
+}
+
+
+
+/* =========================================
+   BỘ LỌC TRẠNG THÁI
+========================================= */
+
+.bo-loc-don-hang {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+}
+
+
+.bo-loc {
+
+    padding: 10px 20px;
+
+    background: #102b40;
+
+    color: white;
+
+    border: 1px solid #31536b;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    font-size: 14px;
+}
+
+
+.bo-loc:hover {
+
+    border-color: #dfc46a;
+
+    color: #dfc46a;
+}
+
+
+.bo-loc.active {
+
+    background: #dfc46a;
+
+    color: #102b40;
+
+    border-color: #dfc46a;
+
+    font-weight: bold;
+}
+
+
+
+/* =========================================
+   KHUNG ĐƠN HÀNG
+========================================= */
+
+.don-hang {
+
+    background: rgba(16, 43, 64, 0.92);
+
+    border: 1px solid #31536b;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+
+    transition: 0.3s;
+}
+
+
+.don-hang:hover {
+
+    border-color: #496b82;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* =========================================
+   ĐẦU ĐƠN HÀNG
+========================================= */
+
+.dau-don-hang {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #31536b;
+}
+
+
+.ma-don {
+
+    margin-right: 18px;
+
+    font-size: 16px;
+
+    color: #dfc46a;
+}
+
+
+.ngay-dat {
+
+    font-size: 14px;
+
+    opacity: 0.65;
+}
+
+
+
+/* =========================================
+   TRẠNG THÁI
+========================================= */
+
+.trang-thai {
+
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+.cho-xac-nhan {
+
+    color: #f2cf62;
+
+    background: rgba(223, 196, 106, 0.12);
+
+    border: 1px solid rgba(223, 196, 106, 0.4);
+}
+
+
+
+/* =========================================
+   SẢN PHẨM TRONG ĐƠN
+========================================= */
+
+.san-pham-trong-don {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    padding: 25px 0;
+}
+
+
+.san-pham-trong-don img {
+
+    width: 125px;
+
+    height: 125px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    border: 1px solid #31536b;
+
+    flex-shrink: 0;
+}
+
+
+.thong-tin-san-pham-don {
+
+    flex: 1;
+}
+
+
+.thong-tin-san-pham-don h2 {
+
+    margin: 0 0 10px;
+
+    font-size: 21px;
+}
+
+
+.thong-tin-san-pham-don p {
+
+    margin: 7px 0;
+
+    font-size: 14px;
+
+    opacity: 0.7;
+}
+
+
+.thong-tin-san-pham-don strong {
+
+    display: block;
+
+    margin-top: 13px;
+
+    font-size: 19px;
+
+    color: #dfc46a;
+}
+
+
+
+/* =========================================
+   TỔNG TIỀN
+========================================= */
+
+.tong-don-hang {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 18px 0;
+
+    border-top: 1px solid #31536b;
+
+    border-bottom: 1px solid #31536b;
+}
+
+
+.tong-don-hang span {
+
+    font-size: 15px;
+
+    opacity: 0.75;
+}
+
+
+.tong-don-hang strong {
+
+    font-size: 21px;
+
+    color: #dfc46a;
+}
+
+
+
+/* =========================================
+   CÁC NÚT
+========================================= */
+
+.nut-don-hang {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+.nut-don-hang button {
+
+    padding: 11px 20px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+
+/* NÚT XEM CHI TIẾT */
+
+.nut-xem-chi-tiet {
+
+    background: transparent;
+
+    color: white;
+
+    border: 1px solid #31536b;
+}
+
+
+.nut-xem-chi-tiet:hover {
+
+    border-color: #dfc46a;
+
+    color: #dfc46a;
+}
+
+
+
+/* NÚT HỦY */
+
+.nut-huy-don {
+
+    background: transparent;
+
+    color: #ff7777;
+
+    border: 1px solid #ff7777;
+}
+
+
+.nut-huy-don:hover {
+
+    background: #ff7777;
+
+    color: white;
+
+    border-color: #ff7777;
+}
+
+
+
+/* =========================================
+   ĐIỆN THOẠI / MÀN HÌNH NHỎ
+========================================= */
+
+@media (max-width: 800px) {
+
+    .thong-ke-don-hang {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    .dau-don-hang {
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+
+    .san-pham-trong-don img {
+
+        width: 100px;
+
+        height: 100px;
+
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .khu-vuc-don-hang {
+
+        padding: 0 15px 40px;
+
+    }
+
+
+    .tieu-de-don-hang h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .thong-ke-don-hang {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
+    }
+
+
+    .o-thong-ke {
+
+        padding: 16px 10px;
+
+    }
+
+
+    .dau-don-hang {
+
+        flex-direction: column;
+
+    }
+
+
+    .san-pham-trong-don {
+
+        align-items: flex-start;
+
+    }
+
+
+    .san-pham-trong-don img {
+
+        width: 85px;
+
+        height: 85px;
+
+    }
+
+
+    .thong-tin-san-pham-don h2 {
+
+        font-size: 17px;
+
+    }
+
+
+    .tong-don-hang {
+
+        justify-content: space-between;
+
+    }
+
+
+    .nut-don-hang {
+
+        flex-direction: column;
+
+    }
+
+
+    .nut-don-hang button {
+
+        width: 100%;
+
+    }
+
+}

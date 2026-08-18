@@ -1,0 +1,544 @@
+/* ==============================
+   CÀI ĐẶT CHUNG
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+
+    background-color: #220a22;
+
+    color: #ffffff;
+    background-image: url(/nenchinh.png);
+}
+
+
+
+/* ==============================
+   PHẦN ĐẦU TRANG
+================================= */
+
+.dau-trang {
+
+    height: 70px;
+
+    padding: 0 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    background: linear-gradient(to right, #dca8c7, #ffffff);
+
+    border-bottom: 1px solid #e7b7f2;
+}
+.logo-giua {
+    position: relative;
+    left: -750px;
+}
+
+.logo {
+
+    width: 220px;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+        color: red;
+
+    animation: doiMau 3s infinite;
+}
+
+
+@keyframes doiMau {
+
+    0% {
+        color: red;
+    }
+
+    14% {
+        color: orange;
+    }
+
+    28% {
+        color: yellow;
+    }
+
+    42% {
+        color: green;
+    }
+
+    57% {
+        color: cyan;
+    }
+
+    71% {
+        color: blue;
+    }
+
+    85% {
+        color: violet;
+    }
+
+    100% {
+        color: red;
+    }
+}
+
+
+.thanh-dieu-huong {
+
+    display: flex;
+
+    gap: 35px;
+
+    flex: 1;
+}
+
+
+.thanh-dieu-huong a {
+
+    color: #030303;
+
+    text-decoration: none;
+
+    font-size: 15px;
+}
+
+
+.thanh-dieu-huong a:hover {
+
+    color: #6e62f1;
+}
+
+
+.tai-khoan {
+
+    color: #070707;
+}
+
+
+
+/* ==============================
+   PHẦN GIỚI THIỆU
+================================= */
+
+.gioi-thieu {
+
+    width: 100%;
+
+    min-height: 350px;
+
+    margin: 20px 0;
+
+    padding: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background-image: url("/nennuochoa.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    border: none;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+
+.gioi-thieu h1 {
+
+    margin-bottom: 15px;
+
+    color: #7aafc8;
+
+    font-size: 34px;
+}
+
+
+.gioi-thieu p {
+
+    margin-bottom: 25px;
+
+    color: #343b49;
+
+    font-size: 16px;
+}
+
+
+
+/* ==============================
+   NÚT
+================================= */
+
+.nut-chinh {
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: linear-gradient(to right, #8dccf3, #f08bc6);
+
+    color: #111111;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.nut-chinh:hover {
+
+    background-color: #f0d87f;
+}
+
+
+
+/* ==============================
+   NỘI DUNG
+================================= */
+
+.noi-dung {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding-bottom: 50px;
+}
+
+
+.tieu-de-khu-vuc {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+.tieu-de-khu-vuc h2 {
+
+    font-size: 50px;
+
+    text-align: center;
+    color: #9c6aed;
+}
+
+
+/* KHU VỰC 3 CHẤM */
+
+.khu-vuc-danh-muc {
+
+    position: absolute;
+
+    right: -300px;
+}
+
+
+/* NÚT 3 CHẤM */
+
+.nut-ba-cham {
+
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: #c54b80;
+
+    color: #dfc46a;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.nut-ba-cham:hover {
+
+    background-color: #dfc46a;
+
+    color: #c54b80;
+
+    transform: scale(1.08);
+}
+
+
+/* DANH SÁCH DANH MỤC */
+
+.danh-sach-danh-muc {
+
+    position: absolute;
+
+    top: 55px;
+
+    right: 0;
+
+    width: 210px;
+
+    padding: 8px;
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    background-color: #4b1459;
+
+    border: 1px solid #31536b;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4);
+
+    z-index: 100;
+}
+
+
+/* KHI BẤM 3 CHẤM */
+
+.danh-sach-danh-muc.hien-thi {
+
+    display: flex;
+}
+
+
+/* TỪNG DANH MỤC */
+
+.danh-sach-danh-muc button {
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: white;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+.danh-sach-danh-muc button:hover {
+
+    background-color: #173b54;
+
+    color: #6ab4df;
+}
+
+
+/* ==============================
+   DANH SÁCH SẢN PHẨM
+================================= */
+
+#danh-sach-san-pham {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+
+/* ==============================
+   THẺ SẢN PHẨM
+================================= */
+
+.the-san-pham {
+
+    overflow: hidden;
+
+    background-color: #0b2439;
+
+    border: 1px solid #21445d;
+
+    border-radius: 12px;
+
+    transition: 0.3s;
+}
+
+
+.the-san-pham:hover {
+
+    transform: translateY(-5px);
+
+    border-color: #dfc46a;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+
+/* ẢNH SẢN PHẨM */
+
+.anh-san-pham {
+
+    width: 100%;
+
+    height: 280px;
+
+    object-fit: cover;
+
+    background-color: #020b12;
+}
+
+
+
+/* THÔNG TIN */
+
+.thong-tin-san-pham {
+
+    padding: 16px;
+}
+
+
+.thong-tin-san-pham h3 {
+
+    margin-bottom: 8px;
+
+    font-size: 18px;
+}
+
+
+.gia-san-pham {
+
+    margin-bottom: 10px;
+
+    color: #e2c66b;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+.so-luong {
+
+    margin-bottom: 15px;
+
+    color: #9eacb7;
+
+    font-size: 13px;
+}
+
+
+
+/* NÚT ĐẶT HÀNG */
+
+.nut-dat-hang {
+
+    width: 100%;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background-color: #dfc46a;
+
+    color: #111111;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.nut-dat-hang:hover {
+
+    background-color: #f0d87f;
+}
+
+
+
+/* ==============================
+   ĐIỆN THOẠI
+================================= */
+
+@media (max-width: 900px) {
+
+    #danh-sach-san-pham {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .dau-trang {
+
+        padding: 0 15px;
+    }
+
+
+    .thanh-dieu-huong {
+
+        display: none;
+    }
+
+
+    .gioi-thieu {
+
+        margin: 20px;
+
+        padding: 30px;
+    }
+
+
+    .noi-dung {
+
+        padding: 20px;
+    }
+
+
+    #danh-sach-san-pham {
+
+        grid-template-columns: 1fr;
+    }
+
+}
