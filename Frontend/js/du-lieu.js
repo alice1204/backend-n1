@@ -4,10 +4,27 @@
 
 const STORAGE_KEYS = {
     PRODUCTS: 'luxury_perfume_products',
-    ORDERS: 'luxury_perfume_orders'
+    ORDERS: 'luxury_perfume_orders',
+    USERS: 'luxury_perfume_users',
+    CURRENT_USER: 'luxury_current_user'
 };
 
 const FALLBACK_PERFUME_IMG = "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20fill%3D%22%23102b40%22%20width%3D%22400%22%20height%3D%22400%22%2F%3E%3Ctext%20fill%3D%22%23dfc46a%22%20font-family%3D%22sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2248%25%22%20text-anchor%3D%22middle%22%3ELUXURY%3C%2Ftext%3E%3Ctext%20fill%3D%22%23b0c4d8%22%20font-family%3D%22sans-serif%22%20font-size%3D%2216%22%20x%3D%2250%25%22%20y%3D%2256%25%22%20text-anchor%3D%22middle%22%3EPERFUME%3C%2Ftext%3E%3C%2Fsvg%3E";
+
+// Dữ liệu mẫu tài khoản khách hàng (User)
+const DEFAULT_USERS = [
+    {
+        id: 'USER01',
+        username: 'user1',
+        password: '123456', // Mật khẩu người dùng thường
+        hoTen: 'Nguyễn Hoàng Nam',
+        email: 'nam.nguyen@gmail.com',
+        sdt: '0912 345 678',
+        diaChi: 'Tòa Landmark 81, 720A Điện Biên Phủ, P.22, Q.Bình Thạnh, TP.HCM',
+        role: 'user',
+        ngayTao: '2026-08-10'
+    }
+];
 
 // Dữ liệu mẫu ban đầu cho sản phẩm
 const DEFAULT_PRODUCTS = [
@@ -137,6 +154,7 @@ const DEFAULT_PRODUCTS = [
 const DEFAULT_ORDERS = [
     {
         maDon: 'LX-89241',
+        username: 'user1',
         khachHang: {
             hoTen: 'Nguyễn Hoàng Nam',
             sdt: '0912 345 678',
@@ -162,6 +180,7 @@ const DEFAULT_ORDERS = [
     },
     {
         maDon: 'LX-89240',
+        username: 'khachhang2',
         khachHang: {
             hoTen: 'Trần Thị Mỹ Linh',
             sdt: '0988 765 432',
@@ -187,6 +206,7 @@ const DEFAULT_ORDERS = [
     },
     {
         maDon: 'LX-89239',
+        username: 'user1',
         khachHang: {
             hoTen: 'Phạm Minh Quân',
             sdt: '0903 112 233',
@@ -212,6 +232,7 @@ const DEFAULT_ORDERS = [
     },
     {
         maDon: 'LX-89238',
+        username: 'khachhang3',
         khachHang: {
             hoTen: 'Lê Thanh Hà',
             sdt: '0977 445 566',
@@ -245,6 +266,210 @@ function khoiTaoDuLieu() {
     if (!localStorage.getItem(STORAGE_KEYS.ORDERS)) {
         localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(DEFAULT_ORDERS));
     }
+    if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
+        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(DEFAULT_USERS));
+    }
+}
+
+// ----------------------------------------------------
+// CÁC HÀM XÁC THỰC & QUẢN LÝ TÀI KHOẢN (AUTH)
+// ----------------------------------------------------
+
+function getDanhSachNguoiDung() {
+    khoiTaoDuLieu();
+    try {
+        const data = localStorage.getItem(STORAGE_KEYS.USERS);
+        return data ? JSON.parse(data) : DEFAULT_USERS;
+    } catch (e) {
+        console.error('Lỗi khi đọc danh sách người dùng:', e);
+        return DEFAULT_USERS;
+    }
+}
+
+function luuDanhSachNguoiDung(danhSach) {
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(danhSach));
+}
+
+function getNguoiDungHienTai() {
+    try {
+        const data = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
+        return data ? JSON.parse(data) : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function setNguoiDungHienTai(user) {
+    if (user) {
+        localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(user));
+    } else {
+        localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+    }
+    window.dispatchEvent(new Event('luxury_auth_changed'));
+}
+
+function getAdminConfig() {
+    if (typeof LUXURY_ADMIN_CONFIG !== 'undefined' && LUXURY_ADMIN_CONFIG) {
+        return LUXURY_ADMIN_CONFIG;
+    }
+    return {
+        username: 'admin',
+        password: 'admin123',
+        hoTen: 'Ban Quản Trị LUXURY Store',
+        email: 'admin@luxuryperfume.vn',
+        sdt: '0988 888 888',
+        role: 'admin'
+    };
+}
+
+function dangNhap(username, password) {
+    const uname = (username || '').trim();
+    const pass = (password || '').trim();
+    const adminCfg = getAdminConfig();
+
+    // 1. KIỂM TRA TÀI KHOẢN QUẢN TRỊ VIÊN (ADMIN) ĐỘC LẬP
+    if (uname === adminCfg.username && pass === adminCfg.password) {
+        const adminUser = {
+            id: 'ADMIN_MASTER',
+            username: adminCfg.username,
+            hoTen: adminCfg.hoTen,
+            email: adminCfg.email,
+            sdt: adminCfg.sdt,
+            role: 'admin',
+            ngayTao: '2026-08-01'
+        };
+        setNguoiDungHienTai(adminUser);
+        return { 
+            success: true, 
+            message: 'Đăng nhập Quản Trị Viên thành công!', 
+            user: adminUser, 
+            redirect: 'trang-quan-tri.html' 
+        };
+    }
+
+    // 2. KIỂM TRA TÀI KHOẢN KHÁCH HÀNG (USER)
+    const users = getDanhSachNguoiDung();
+    const user = users.find(u => 
+        (u.username.toLowerCase() === uname.toLowerCase() || (u.email && u.email.toLowerCase() === uname.toLowerCase())) &&
+        u.password === pass
+    );
+
+    if (!user) {
+        return { success: false, message: 'Tên đăng nhập hoặc mật khẩu không chính xác!' };
+    }
+
+    // Lưu phiên đăng nhập User
+    setNguoiDungHienTai(user);
+    return { 
+        success: true, 
+        message: `Chào mừng ${user.hoTen} quay trở lại!`, 
+        user: user, 
+        redirect: null 
+    };
+}
+
+function dangKy(thongTin) {
+    const adminCfg = getAdminConfig();
+    const uname = (thongTin.username || '').trim();
+    const email = (thongTin.email || '').trim().toLowerCase();
+
+    if (!uname || !thongTin.password || !thongTin.hoTen) {
+        return { success: false, message: 'Vui lòng điền đầy đủ các thông tin bắt buộc!' };
+    }
+
+    if (uname.length < 3) {
+        return { success: false, message: 'Tên đăng nhập phải có ít nhất 3 ký tự!' };
+    }
+
+    if (thongTin.password.length < 6) {
+        return { success: false, message: 'Mật khẩu phải có ít nhất 6 ký tự!' };
+    }
+
+    // Không cho phép đăng ký trùng tên Admin
+    if (uname.toLowerCase() === adminCfg.username.toLowerCase()) {
+        return { success: false, message: 'Tên tài khoản này đã được bảo lưu bởi hệ thống!' };
+    }
+
+    const users = getDanhSachNguoiDung();
+
+    // Kiểm tra trùng username
+    if (users.some(u => u.username.toLowerCase() === uname.toLowerCase())) {
+        return { success: false, message: 'Tên đăng nhập này đã tồn tại, vui lòng chọn tên khác!' };
+    }
+
+    // Kiểm tra trùng email nếu có
+    if (email && users.some(u => u.email && u.email.toLowerCase() === email)) {
+        return { success: false, message: 'Email này đã được đăng ký tài khoản khác!' };
+    }
+
+    // Mọi tài khoản tạo mới luôn là User
+    const newUser = {
+        id: 'USER' + String(Date.now()).slice(-5),
+        username: uname,
+        password: thongTin.password,
+        hoTen: thongTin.hoTen.trim(),
+        email: email || '',
+        sdt: thongTin.sdt ? thongTin.sdt.trim() : '',
+        diaChi: thongTin.diaChi ? thongTin.diaChi.trim() : '',
+        role: 'user', // Luôn gán role user
+        ngayTao: new Date().toISOString().split('T')[0]
+    };
+
+    users.push(newUser);
+    luuDanhSachNguoiDung(users);
+
+    // Tự động đăng nhập sau khi đăng ký
+    setNguoiDungHienTai(newUser);
+    return { success: true, message: 'Đăng ký tài khoản thành công!', user: newUser };
+}
+
+function dangXuat() {
+    setNguoiDungHienTai(null);
+}
+
+function kiemTraLaAdmin() {
+    const user = getNguoiDungHienTai();
+    return !!(user && user.role === 'admin');
+}
+
+function kiemTraDaDangNhap() {
+    return !!getNguoiDungHienTai();
+}
+
+// ----------------------------------------------------
+// TIỆN ÍCH TÌM KIẾM & CHUẨN HÓA TIẾNG VIỆT (FUZZY SEARCH)
+// ----------------------------------------------------
+
+function xoaDauTiengViet(str) {
+    if (!str) return '';
+    return str
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[đĐ]/g, 'd')
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+// Kiểm tra khớp từ khóa gần giống nhất
+function khopTuKhoaSanPham(sanPham, tuKhoa) {
+    if (!tuKhoa) return true;
+    const cleanKw = xoaDauTiengViet(tuKhoa);
+    if (!cleanKw) return true;
+
+    const keywords = cleanKw.split(' ').filter(k => k.length > 0);
+
+    const chuoiKiemTra = xoaDauTiengViet(`
+        ${sanPham.ten || ''} 
+        ${sanPham.thuongHieuTen || sanPham.thuongHieu || ''} 
+        ${sanPham.danhMucTen || sanPham.danhMuc || ''} 
+        ${sanPham.dungTich || ''} 
+        ${sanPham.moTa || ''}
+    `);
+
+    // Khớp nếu tất cả các từ trong từ khóa đều xuất hiện trong sản phẩm
+    return keywords.every(kw => chuoiKiemTra.includes(kw));
 }
 
 // ----------------------------------------------------
@@ -264,7 +489,6 @@ function getDanhSachSanPham() {
 
 function luuDanhSachSanPham(danhSach) {
     localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(danhSach));
-    // Phát sự kiện để các tab hoặc trang khác cập nhật ngay
     window.dispatchEvent(new Event('luxury_products_updated'));
 }
 
@@ -312,11 +536,18 @@ function getSanPhamTheoId(id) {
 // CÁC HÀM XỬ LÝ ĐƠN HÀNG
 // ----------------------------------------------------
 
-function getDanhSachDonHang() {
+function getDanhSachDonHang(locTheoUser = false) {
     khoiTaoDuLieu();
     try {
         const data = localStorage.getItem(STORAGE_KEYS.ORDERS);
-        return data ? JSON.parse(data) : DEFAULT_ORDERS;
+        const orders = data ? JSON.parse(data) : DEFAULT_ORDERS;
+        if (locTheoUser) {
+            const currentUser = getNguoiDungHienTai();
+            if (currentUser && currentUser.role !== 'admin') {
+                return orders.filter(o => o.username === currentUser.username || (o.khachHang && o.khachHang.sdt === currentUser.sdt));
+            }
+        }
+        return orders;
     } catch (e) {
         console.error('Lỗi khi đọc danh sách đơn hàng:', e);
         return DEFAULT_ORDERS;
@@ -329,7 +560,7 @@ function luuDanhSachDonHang(danhSach) {
 }
 
 function capNhatTrangThaiDonHang(maDon, trangThaiMoi) {
-    const danhSach = getDanhSachDonHang();
+    const danhSach = getDanhSachDonHang(false);
     const donHang = danhSach.find(item => item.maDon === maDon);
     if (donHang) {
         donHang.trangThai = trangThaiMoi;
@@ -340,20 +571,24 @@ function capNhatTrangThaiDonHang(maDon, trangThaiMoi) {
 }
 
 function taoDonHangMoi(thongTinDon) {
-    const danhSach = getDanhSachDonHang();
+    const danhSach = getDanhSachDonHang(false);
     const maDonMoi = 'LX-' + Math.floor(10000 + Math.random() * 90000);
     const now = new Date();
     const ngayDatStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    
+    const currentUser = getNguoiDungHienTai();
+    const username = currentUser ? currentUser.username : (thongTinDon.username || 'guest');
 
     const donHangHoanChinh = {
         maDon: maDonMoi,
+        username: username,
         ngayDat: ngayDatStr,
         trangThai: 'cho-xac-nhan',
         phuongThucThanhToan: thongTinDon.phuongThucThanhToan || 'COD - Thanh toán khi nhận hàng',
         khachHang: thongTinDon.khachHang || {
-            hoTen: 'Khách hàng Luxury',
-            sdt: '0900 000 000',
-            diaChi: 'Hà Nội, Việt Nam',
+            hoTen: currentUser ? currentUser.hoTen : 'Khách hàng Luxury',
+            sdt: currentUser ? currentUser.sdt : '0900 000 000',
+            diaChi: currentUser ? currentUser.diaChi : 'Hà Nội, Việt Nam',
             ghiChu: ''
         },
         sanPham: thongTinDon.sanPham || [],
@@ -368,7 +603,7 @@ function taoDonHangMoi(thongTinDon) {
 }
 
 function getDonHangTheoMa(maDon) {
-    const danhSach = getDanhSachDonHang();
+    const danhSach = getDanhSachDonHang(false);
     return danhSach.find(item => item.maDon === maDon) || null;
 }
 
@@ -378,7 +613,7 @@ function getDonHangTheoMa(maDon) {
 
 function tinhToanThongKe() {
     const products = getDanhSachSanPham();
-    const orders = getDanhSachDonHang();
+    const orders = getDanhSachDonHang(false);
 
     // Doanh thu từ các đơn đã hoàn thành và đang giao
     const doanhThuTong = orders
@@ -430,3 +665,4 @@ function getThongTinTrangThai(trangThai) {
 
 // Tự động khởi tạo khi load file
 khoiTaoDuLieu();
+

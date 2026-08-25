@@ -1,681 +1,356 @@
-/* =========================================
-   TRANG ĐƠN HÀNG
-========================================= */
-
+/* ==========================================================================
+   GIAO DIỆN TRANG ĐƠN HÀNG (ORDERS) - LUXURY ROSE & WHITE PALETTE
+   ========================================================================== */
 
 /* KHUNG CHÍNH */
-
 .khu-vuc-don-hang {
-
-    max-width: 1200px;
-
-    margin: 45px auto;
-
-    padding: 0 25px 60px;
-
-    color: white;
+    max-width: 1100px;
+    margin: 35px auto 60px;
+    padding: 0 20px;
+    color: #1f131a;
 }
 
-
-
-/* =========================================
-   TIÊU ĐỀ
-========================================= */
-
+/* TIÊU ĐỀ */
 .tieu-de-don-hang {
-
     text-align: center;
-
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
-
 
 .tieu-de-don-hang .chu-nho {
-
-    margin-bottom: 8px;
-
-    font-size: 15px;
-
-    opacity: 0.65;
-
-    letter-spacing: 1px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #be185d;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
-
 
 .tieu-de-don-hang h1 {
-
-    margin: 0 0 12px;
-
-    font-size: 32px;
-
-    letter-spacing: 1px;
+    margin: 0 0 10px;
+    font-size: 30px;
+    font-weight: 900;
+    color: #1f131a;
 }
-
 
 .mo-ta-don-hang {
-
-    margin: 0;
-
-    font-size: 15px;
-
-    opacity: 0.7;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #64748b;
+    max-width: 600px;
 }
 
-
-
-/* =========================================
-   4 Ô THỐNG KÊ
-========================================= */
-
+/* 4 Ô THỐNG KÊ */
 .thong-ke-don-hang {
-
     display: grid;
-
     grid-template-columns: repeat(4, 1fr);
-
-    gap: 18px;
-
-    margin-bottom: 30px;
+    gap: 16px;
+    margin-bottom: 25px;
 }
-
 
 .o-thong-ke {
-
-    padding: 22px;
-
-    background: rgba(16, 43, 64, 0.9);
-
-    border: 1px solid #31536b;
-
-    border-radius: 16px;
-
+    padding: 20px 16px;
+    background: #ffffff;
+    border: 1.5px solid #fecdd3;
+    border-radius: 18px;
     text-align: center;
-
-    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.15);
+    transition: all 0.25s;
 }
-
 
 .o-thong-ke:hover {
-
-    transform: translateY(-4px);
-
-    border-color: #dfc46a;
-
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px);
+    border-color: #ff758c;
+    box-shadow: 0 8px 25px rgba(255, 117, 140, 0.25);
 }
-
 
 .o-thong-ke p {
-
-    margin: 0 0 10px;
-
-    font-size: 14px;
-
-    opacity: 0.7;
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #64748b;
 }
-
 
 .o-thong-ke strong {
-
-    font-size: 28px;
-
-    color: #dfc46a;
+    font-size: 26px;
+    font-weight: 900;
+    color: #be185d;
 }
 
-
-
-/* =========================================
-   BỘ LỌC TRẠNG THÁI
-========================================= */
-
+/* BỘ LỌC TRẠNG THÁI */
 .bo-loc-don-hang {
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
-    gap: 10px;
-
+    gap: 8px;
     flex-wrap: wrap;
-
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
-
 
 .bo-loc {
-
-    padding: 10px 20px;
-
-    background: #102b40;
-
-    color: white;
-
-    border: 1px solid #31536b;
-
+    padding: 8px 18px;
+    background: #ffffff;
+    color: #475569;
+    border: 1.5px solid #fecdd3;
     border-radius: 20px;
-
     cursor: pointer;
-
-    transition: 0.3s;
-
-    font-size: 14px;
+    transition: all 0.2s;
+    font-size: 13px;
+    font-weight: 700;
 }
-
 
 .bo-loc:hover {
-
-    border-color: #dfc46a;
-
-    color: #dfc46a;
+    border-color: #ff758c;
+    color: #be185d;
+    background: #fff0f3;
 }
-
 
 .bo-loc.active {
-
-    background: #dfc46a;
-
-    color: #102b40;
-
-    border-color: #dfc46a;
-
+    background: var(--pink-gradient);
+    color: #ffffff;
+    border-color: transparent;
     font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.35);
 }
 
+/* GIAO DIỆN KHI CHƯA ĐĂNG NHẬP */
+.user-guest-order-prompt {
+    background: #ffffff;
+    border: 2px solid #fecdd3;
+    border-radius: 24px;
+    padding: 60px 30px;
+    text-align: center;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 10px 35px rgba(255, 182, 193, 0.2);
+}
 
+.guest-icon {
+    font-size: 48px;
+    margin-bottom: 14px;
+}
 
-/* =========================================
-   KHUNG ĐƠN HÀNG
-========================================= */
+.user-guest-order-prompt h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1f131a;
+    margin-bottom: 10px;
+}
 
+.user-guest-order-prompt p {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.btn-guest-login {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 32px;
+    background: var(--pink-gradient);
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 6px 20px rgba(255, 117, 140, 0.4);
+}
+
+.btn-guest-login:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+}
+
+/* THẺ ĐƠN HÀNG */
 .don-hang {
-
-    background: rgba(16, 43, 64, 0.92);
-
-    border: 1px solid #31536b;
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    margin-bottom: 25px;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-
-    transition: 0.3s;
+    background: #ffffff;
+    border: 1.5px solid #fce7f3;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.12);
+    transition: all 0.25s;
 }
-
 
 .don-hang:hover {
-
-    border-color: #496b82;
-
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    border-color: #f472b6;
+    box-shadow: 0 8px 25px rgba(255, 117, 140, 0.2);
 }
-
-
-
-/* =========================================
-   ĐẦU ĐƠN HÀNG
-========================================= */
 
 .dau-don-hang {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
-    padding-bottom: 18px;
-
-    border-bottom: 1px solid #31536b;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid #fff0f3;
 }
-
 
 .ma-don {
-
-    margin-right: 18px;
-
     font-size: 16px;
-
-    color: #dfc46a;
+    font-weight: 800;
+    color: #be185d;
+    font-family: monospace;
+    margin-right: 12px;
 }
-
 
 .ngay-dat {
-
-    font-size: 14px;
-
-    opacity: 0.65;
+    font-size: 13px;
+    color: #94a3b8;
 }
 
-
-
-/* =========================================
-   TRẠNG THÁI
-========================================= */
-
+/* TRẠNG THÁI BADGE */
 .trang-thai {
-
-    padding: 8px 15px;
-
+    padding: 5px 14px;
     border-radius: 20px;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
+    font-size: 12px;
+    font-weight: 800;
     white-space: nowrap;
 }
 
-
 .cho-xac-nhan {
-
-    color: #f2cf62;
-
-    background: rgba(223, 196, 106, 0.12);
-
-    border: 1px solid rgba(223, 196, 106, 0.4);
+    color: #d97706;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
 }
 
+.dang-giao {
+    color: #be185d;
+    background: #ffe4e9;
+    border: 1px solid #fbcfe8;
+}
 
+.hoan-thanh {
+    color: #059669;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+}
 
-/* =========================================
-   SẢN PHẨM TRONG ĐƠN
-========================================= */
+.da-huy {
+    color: #dc2626;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+}
 
+/* SẢN PHẨM TRONG ĐƠN */
 .san-pham-trong-don {
-
     display: flex;
-
     align-items: center;
-
-    gap: 22px;
-
-    padding: 25px 0;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #fff5f7;
 }
-
 
 .san-pham-trong-don img {
-
-    width: 125px;
-
-    height: 125px;
-
+    width: 72px;
+    height: 72px;
     object-fit: cover;
-
-    border-radius: 15px;
-
-    border: 1px solid #31536b;
-
+    border-radius: 12px;
+    border: 1.5px solid #fecdd3;
     flex-shrink: 0;
 }
 
-
 .thong-tin-san-pham-don {
-
     flex: 1;
 }
 
-
 .thong-tin-san-pham-don h2 {
-
-    margin: 0 0 10px;
-
-    font-size: 21px;
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1f131a;
 }
-
 
 .thong-tin-san-pham-don p {
-
-    margin: 7px 0;
-
-    font-size: 14px;
-
-    opacity: 0.7;
+    margin: 2px 0;
+    font-size: 12px;
+    color: #64748b;
 }
-
 
 .thong-tin-san-pham-don strong {
-
     display: block;
-
-    margin-top: 13px;
-
-    font-size: 19px;
-
-    color: #dfc46a;
+    margin-top: 4px;
+    font-size: 14px;
+    color: #e11d48;
+    font-weight: 900;
 }
 
-
-
-/* =========================================
-   TỔNG TIỀN
-========================================= */
-
+/* TỔNG TIỀN */
 .tong-don-hang {
-
     display: flex;
-
     justify-content: flex-end;
-
     align-items: center;
-
-    gap: 10px;
-
-    padding: 18px 0;
-
-    border-top: 1px solid #31536b;
-
-    border-bottom: 1px solid #31536b;
+    gap: 8px;
+    padding: 14px 0;
+    border-top: 1.5px solid #fff0f3;
+    border-bottom: 1.5px solid #fff0f3;
+    font-size: 14px;
 }
-
-
-.tong-don-hang span {
-
-    font-size: 15px;
-
-    opacity: 0.75;
-}
-
 
 .tong-don-hang strong {
-
-    font-size: 21px;
-
-    color: #dfc46a;
+    font-size: 19px;
+    font-weight: 900;
+    color: #e11d48;
 }
 
-
-
-/* =========================================
-   CÁC NÚT
-========================================= */
-
+/* NÚT THAO TÁC */
 .nut-don-hang {
-
     display: flex;
-
     justify-content: flex-end;
-
-    gap: 12px;
-
-    margin-top: 20px;
+    gap: 10px;
+    margin-top: 14px;
 }
-
-
-.nut-don-hang button {
-
-    padding: 11px 20px;
-
-    border-radius: 9px;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-
-
-/* NÚT XEM CHI TIẾT */
 
 .nut-xem-chi-tiet {
-
-    background: transparent;
-
-    color: white;
-
-    border: 1px solid #31536b;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    background: var(--pink-gradient);
+    color: #ffffff;
+    border: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.3);
 }
-
 
 .nut-xem-chi-tiet:hover {
-
-    border-color: #dfc46a;
-
-    color: #dfc46a;
+    filter: brightness(1.06);
+    transform: translateY(-2px);
 }
 
-
-
-/* NÚT HỦY */
-
-.nut-huy-don {
-
-    background: transparent;
-
-    color: #ff7777;
-
-    border: 1px solid #ff7777;
-}
-
-
-.nut-huy-don:hover {
-
-    background: #ff7777;
-
-    color: white;
-
-    border-color: #ff7777;
-}
-
-
-
-/* =========================================
-   ĐIỆN THOẠI / MÀN HÌNH NHỎ
-========================================= */
-
-@media (max-width: 800px) {
-
-    .thong-ke-don-hang {
-
-        grid-template-columns: repeat(2, 1fr);
-
-    }
-
-
-    .dau-don-hang {
-
-        align-items: flex-start;
-
-        gap: 15px;
-
-    }
-
-
-    .san-pham-trong-don img {
-
-        width: 100px;
-
-        height: 100px;
-
-    }
-
-}
-
-
-@media (max-width: 550px) {
-
-    .khu-vuc-don-hang {
-
-        padding: 0 15px 40px;
-
-    }
-
-
-    .tieu-de-don-hang h1 {
-
-        font-size: 25px;
-
-    }
-
-
-    .thong-ke-don-hang {
-
-        grid-template-columns: 1fr 1fr;
-
-        gap: 10px;
-
-    }
-
-
-    .o-thong-ke {
-
-        padding: 16px 10px;
-
-    }
-
-
-    .dau-don-hang {
-
-        flex-direction: column;
-
-    }
-
-
-    .san-pham-trong-don {
-
-        align-items: flex-start;
-
-    }
-
-
-    .san-pham-trong-don img {
-
-        width: 85px;
-
-        height: 85px;
-
-    }
-
-
-    .thong-tin-san-pham-don h2 {
-
-        font-size: 17px;
-
-    }
-
-
-    .tong-don-hang {
-
-        justify-content: space-between;
-
-    }
-
-
-    .nut-don-hang {
-
-        flex-direction: column;
-
-    }
-
-
-    .nut-don-hang button {
-
-        width: 100%;
-
-    }
-
-}
-
-/* ==========================================================================
-   MODAL CHI TIẾT ĐƠN HÀNG (LUXURY ORDER DETAIL MODAL)
-   ========================================================================== */
-
-.modal-don-hang-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(8, 5, 15, 0.85);
-    backdrop-filter: blur(12px);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.modal-don-hang-overlay.hien-thi {
-    display: flex;
-    animation: fadeInModal 0.25s ease forwards;
-}
-
-.modal-don-hang-box {
-    background: linear-gradient(145deg, #0d2133 0%, #1e0d26 100%);
-    border: 1px solid #c54b80;
-    border-radius: 22px;
-    width: 100%;
-    max-width: 820px;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(197, 75, 128, 0.25);
-    position: relative;
-    animation: modalPopUp 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
-    color: #ffffff;
-}
-
+/* MODAL CHI TIẾT ĐƠN HÀNG */
 .modal-don-hang-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 28px;
-    border-bottom: 1px solid #31536b;
-    background: linear-gradient(135deg, rgba(75, 20, 89, 0.5), rgba(16, 43, 64, 0.5));
+    padding: 20px 24px;
+    border-bottom: 1.5px solid #fce7f3;
+    background: #fff0f3;
 }
 
 .modal-don-hang-header h3 {
     margin: 0;
-    font-size: 21px;
-    color: #dfc46a;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.modal-don-hang-dong {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid #31536b;
-    background: rgba(16, 43, 64, 0.8);
-    color: #dfc46a;
     font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.modal-don-hang-dong:hover {
-    background: #c54b80;
-    color: #ffffff;
-    border-color: #c54b80;
-    transform: rotate(90deg) scale(1.1);
+    color: #be185d;
+    font-weight: 900;
 }
 
 .modal-don-hang-body {
-    padding: 28px;
+    padding: 24px;
+    overflow-y: auto;
+    max-height: calc(90vh - 140px);
 }
 
-/* ==========================================================================
-   TIMELINE THEO DÕI HÀNH TRÌNH ĐƠN HÀNG
-   ========================================================================== */
+/* TIMELINE VẬN CHUYỂN */
 .order-tracking-timeline {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     position: relative;
-    margin: 10px 0 30px;
+    margin: 10px 0 25px;
     padding: 0 10px;
 }
 
@@ -686,7 +361,7 @@
     left: 45px;
     right: 45px;
     height: 3px;
-    background: #25445d;
+    background: #fce7f3;
     z-index: 1;
 }
 
@@ -704,123 +379,102 @@
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background: #0b2439;
-    border: 2px solid #31536b;
-    color: #9cb3c9;
+    background: #ffffff;
+    border: 2px solid #fecdd3;
+    color: #64748b;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     transition: all 0.3s;
 }
 
 .tracking-step.active .tracking-step-circle {
-    background: linear-gradient(135deg, #dfc46a, #c54b80);
-    border-color: #dfc46a;
-    color: #111111;
-    box-shadow: 0 0 15px rgba(223, 196, 106, 0.5);
-}
-
-.tracking-step.cancelled .tracking-step-circle {
-    background: #e63946;
-    border-color: #e63946;
+    background: var(--pink-gradient);
+    border-color: transparent;
     color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 117, 140, 0.4);
 }
 
 .tracking-step-label {
     font-size: 12px;
-    font-weight: 600;
-    color: #9cb3c9;
+    font-weight: 700;
+    color: #64748b;
 }
 
 .tracking-step.active .tracking-step-label {
-    color: #dfc46a;
-    font-weight: 700;
+    color: #be185d;
+    font-weight: 900;
 }
 
-.tracking-step.cancelled .tracking-step-label {
-    color: #ff7777;
-}
-
-/* 2 Hộp Thông Tin */
+/* 2 HỘP THÔNG TIN TRONG MODAL */
 .modal-order-grid-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    margin-bottom: 24px;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
 .modal-info-card {
-    background: rgba(11, 36, 57, 0.7);
-    border: 1px solid #31536b;
+    background: #fff8f9;
+    border: 1.5px solid #fecdd3;
     border-radius: 14px;
-    padding: 18px;
+    padding: 16px;
 }
 
 .modal-info-card h4 {
-    margin: 0 0 12px;
-    font-size: 14px;
-    color: #dfc46a;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid rgba(49, 83, 107, 0.6);
-    padding-bottom: 8px;
+    margin: 0 0 10px;
+    font-size: 13.5px;
+    color: #be185d;
+    font-weight: 900;
+    border-bottom: 1.5px solid #fce7f3;
+    padding-bottom: 6px;
 }
 
 .modal-info-card-row {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
-    margin-bottom: 8px;
-    line-height: 1.5;
+    font-size: 12.5px;
+    margin-bottom: 6px;
 }
 
 .modal-info-card-row span:first-child {
-    color: #9cb3c9;
+    color: #64748b;
 }
 
-/* Danh Sách Món Trong Modal */
+/* DANH SÁCH MÓN */
 .modal-order-items-box {
-    background: rgba(11, 36, 57, 0.7);
-    border: 1px solid #31536b;
+    background: #fff8f9;
+    border: 1.5px solid #fecdd3;
     border-radius: 14px;
-    padding: 18px;
-    margin-bottom: 24px;
+    padding: 16px;
+    margin-bottom: 16px;
 }
 
 .modal-order-items-box h4 {
-    margin: 0 0 14px;
-    font-size: 14px;
-    color: #dfc46a;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid rgba(49, 83, 107, 0.6);
-    padding-bottom: 8px;
+    margin: 0 0 10px;
+    font-size: 13.5px;
+    color: #be185d;
+    font-weight: 900;
+    border-bottom: 1.5px solid #fce7f3;
+    padding-bottom: 6px;
 }
 
 .modal-item-row {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(49, 83, 107, 0.4);
-}
-
-.modal-item-row:last-child {
-    border-bottom: none;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #fff0f3;
 }
 
 .modal-item-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
+    width: 46px;
+    height: 46px;
     object-fit: cover;
-    border: 1px solid #31536b;
-    background: #020b12;
-    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1.5px solid #fecdd3;
 }
 
 .modal-item-info {
@@ -828,104 +482,74 @@
 }
 
 .modal-item-info h5 {
-    margin: 0 0 4px;
-    font-size: 15px;
-    color: #ffffff;
+    margin: 0 0 2px;
+    font-size: 13.5px;
+    color: #1f131a;
+    font-weight: 800;
 }
 
 .modal-item-info p {
     margin: 0;
-    font-size: 13px;
-    color: #9cb3c9;
+    font-size: 11.5px;
+    color: #64748b;
 }
 
 .modal-item-price {
-    font-size: 16px;
-    font-weight: 700;
-    color: #dfc46a;
+    font-size: 13.5px;
+    font-weight: 900;
+    color: #e11d48;
 }
 
-/* Tổng kết giá tiền */
 .modal-order-pricing {
-    background: rgba(7, 23, 36, 0.6);
-    border: 1px solid rgba(49, 83, 107, 0.6);
-    border-radius: 12px;
-    padding: 16px;
-    margin-top: 15px;
+    border-top: 1.5px dashed #fecdd3;
+    padding-top: 10px;
+    margin-top: 10px;
 }
 
 .modal-pricing-row {
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-    margin-bottom: 8px;
+    font-size: 12.5px;
+    margin-bottom: 4px;
 }
 
 .modal-pricing-row.total {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #31536b;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 900;
+    color: #1f131a;
+    margin-top: 6px;
 }
 
-.modal-pricing-row.total strong:last-child {
-    font-size: 22px;
-    color: #dfc46a;
-}
-
-/* Modal Footer */
 .modal-don-hang-footer {
+    padding: 14px 24px;
+    background: #fff0f3;
+    border-top: 1.5px solid #fce7f3;
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
-    padding: 18px 28px;
-    border-top: 1px solid #31536b;
-    background: rgba(11, 36, 57, 0.5);
-}
-
-.modal-btn-huy-don {
-    padding: 10px 20px;
-    background: transparent;
-    border: 1px solid #ff7777;
-    color: #ff7777;
-    border-radius: 9px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.25s;
-}
-
-.modal-btn-huy-don:hover {
-    background: #ff7777;
-    color: #ffffff;
 }
 
 .modal-btn-dong {
-    padding: 10px 22px;
-    background: #dfc46a;
+    padding: 10px 24px;
+    background: var(--pink-gradient);
+    color: #ffffff;
     border: none;
-    color: #102b40;
-    border-radius: 9px;
+    border-radius: 8px;
+    font-size: 13px;
     font-weight: 800;
     cursor: pointer;
-    transition: all 0.25s;
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.35);
 }
 
 .modal-btn-dong:hover {
-    background: #f0d87f;
-    transform: translateY(-1px);
+    filter: brightness(1.05);
 }
 
-@media (max-width: 700px) {
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .thong-ke-don-hang {
+        grid-template-columns: repeat(2, 1fr);
+    }
     .modal-order-grid-info {
         grid-template-columns: 1fr;
     }
-
-    .order-tracking-timeline {
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .order-tracking-timeline::before {
-        display: none;
-    }
-}
+}

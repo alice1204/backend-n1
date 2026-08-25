@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đơn Hàng Của Bạn - Cửa Hàng Nước Hoa LUXURY</title>
+    <title>Đơn Hàng Của Bạn - LUXURY Perfume Boutique</title>
 
     <link rel="stylesheet" href="css/giao-dien.css">
     <link rel="stylesheet" href="css/trang-don-hang.css">
@@ -12,43 +12,55 @@
 
 <body>
 
-    <!-- PHẦN ĐẦU TRANG -->
+    <!-- PHẦN ĐẦU TRANG (HEADER VỚI LOGO Ở CHÍNH GIỮA MENU) -->
     <header class="dau-trang">
-        <div class="logo">
-            𝓛𝓤𝓧𝓤𝓡𝓨
+        
+        <!-- BÊN TRÁI: MENU ĐIỀU HƯỚNG -->
+        <div class="header-left-nav">
+            <nav class="thanh-dieu-huong">
+                <a href="trang-chu.html">Trang Chủ</a>
+                <a href="trang-san-pham.html">Sản Phẩm</a>
+                <a href="trang-don-hang.html" class="active">Đơn Hàng</a>
+            </nav>
         </div>
 
-        <nav class="thanh-dieu-huong">
-            <a href="trang-chu.html">𝕿𝖗𝖆𝖓𝖌 𝖈𝖍ủ</a>
-            <a href="trang-san-pham.html">𝓢ả𝓷 𝓹𝓱ẩ𝓶</a>
-            <a href="trang-don-hang.html" style="color: #6e62f1; font-weight: bold;">Đơ𝖓 𝖍à𝖓𝖌</a>
-            <a href="trang-quan-tri.html">𝕼𝖚ả𝖓 𝖙𝖗ị</a>
-        </nav>
-
-        <div class="logo-giua">
-            <img src="logo-removebg-preview.png" width="130px" alt="Luxury Logo">
+        <!-- Ở GIỮA: LOGO HÌNH ẢNH (logo-removebg-preview.png) -->
+        <div class="header-center-logo">
+            <a href="trang-chu.html" class="logo-center-wrap">
+                <img src="logo-removebg-preview.png" alt="LUXURY Perfume Logo" class="logo-center-img">
+            </a>
         </div>
 
-        <div class="tai-khoan">
-            <a href="trang-quan-tri.html" style="color: #070707; text-decoration: none;">𝕿à𝖎 𝖐𝖍𝖔ả𝖓</a>
+        <!-- BÊN PHẢI: TÌM KIẾM & TÀI KHOẢN -->
+        <div class="header-right-tools">
+            <div class="thanh-tim-kiem-header">
+                <div class="search-input-wrapper">
+                    <span class="search-input-icon">🔍</span>
+                    <input type="text" id="header-search-input" class="search-input-header" placeholder="Tìm kiếm nước hoa...">
+                </div>
+                <div id="header-search-dropdown" class="header-search-dropdown"></div>
+            </div>
+
+            <div class="tai-khoan">
+                <!-- Tải tự động qua ung-dung.js theo vai trò người dùng -->
+            </div>
         </div>
+
     </header>
 
-    <!-- ================================= -->
-    <!-- PHẦN QUẢN LÝ ĐƠN HÀNG             -->
-    <!-- ================================= -->
+    <!-- PHẦN QUẢN LÝ ĐƠN HÀNG (DÀNH CHO USER - READ ONLY) -->
     <main class="khu-vuc-don-hang">
 
         <!-- TIÊU ĐỀ -->
         <div class="tieu-de-don-hang">
-            <p class="chu-nho">Lịch sử đơn hàng</p>
-            <h1>Quản Lý Đơn Hàng Của Bạn</h1>
+            <p class="chu-nho">✦ LỊCH SỬ GIAO DỊCH VIP ✦</p>
+            <h1>Đơn Đặt Hàng Của Bạn</h1>
             <p class="mo-ta-don-hang">
-                Theo dõi hành trình, kiểm tra tình trạng và quản lý các đơn đặt nước hoa của bạn thời gian thực.
+                Theo dõi hành trình vận chuyển, kiểm tra tình trạng đóng gói nguyên seal và thời gian giao nhận dự kiến của đơn hàng.
             </p>
         </div>
 
-        <!-- 4 Ô THỐNG KÊ -->
+        <!-- 4 Ô THỐNG KÊ VIP -->
         <div class="thong-ke-don-hang">
             <div class="o-thong-ke">
                 <p>Tổng đơn hàng</p>
@@ -61,12 +73,12 @@
             </div>
 
             <div class="o-thong-ke">
-                <p>Đang giao</p>
+                <p>Đang giao hỏa tốc</p>
                 <strong id="user-shipping-orders">0</strong>
             </div>
 
             <div class="o-thong-ke">
-                <p>Đã hoàn thành</p>
+                <p>Đã nhận thành công</p>
                 <strong id="user-completed-orders">0</strong>
             </div>
         </div>
@@ -82,12 +94,13 @@
 
         <!-- DANH SÁCH ĐƠN HÀNG TẢI ĐỘNG TỪ LOCALSTORAGE -->
         <div id="danh-sach-don-hang-container">
-            <!-- Tự động render qua ung-dung.js -->
+            <!-- Tự động render qua ung-dung.js (Chặn xem nếu chưa đăng nhập) -->
         </div>
 
     </main>
 
     <!-- SCRIPTS -->
+    <script src="js/admin-config.js"></script>
     <script src="js/du-lieu.js"></script>
     <script src="js/ung-dung.js"></script>
 
