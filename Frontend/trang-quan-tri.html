@@ -13,25 +13,26 @@
 
 <body>
 
-    <!-- PHẦN ĐẦU TRANG -->
+    <!-- PHẦN ĐẦU TRANG (HEADER) -->
     <header class="dau-trang">
-        <div class="logo">
-            𝓛𝓤𝓧𝓤𝓡𝓨
-        </div>
+        <a href="trang-chu.html" class="logo">
+            <span>LUXURY</span> ADMIN PANEL
+        </a>
 
         <nav class="thanh-dieu-huong">
-            <a href="trang-chu.html">𝕿𝖗𝖆𝖓𝖌 𝖈𝖍ủ</a>
-            <a href="trang-san-pham.html">𝓢ả𝓷 𝓹𝓱ẩ𝓶</a>
-            <a href="trang-don-hang.html">Đơ𝖓 𝖍à𝖓𝖌</a>
-            <a href="trang-quan-tri.html" style="color: #dfc46a; font-weight: bold;">𝕼𝖚ả𝖓 𝖙𝖗ị</a>
+            <a href="trang-chu.html">Trang Chủ</a>
+            <a href="trang-san-pham.html">Sản Phẩm</a>
+            <a href="trang-don-hang.html">Đơn Hàng</a>
+            <a href="trang-quan-tri.html" class="active">Quản Trị</a>
         </nav>
 
-        <div class="logo-giua">
-            <img src="logo-removebg-preview.png" width="130px" alt="Luxury Perfume">
-        </div>
-
         <div class="tai-khoan">
-            👑 𝕬𝖉𝖒𝖎𝖓
+            <div class="user-header-menu">
+                <button class="user-header-btn admin-btn" onclick="dangXuatAdmin()" title="Bấm để đăng xuất">
+                    <span>👑 Quản Trị Viên (Admin)</span>
+                    <span style="color: #ff7777; margin-left: 6px; font-weight: bold;">[Đăng Xuất]</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -550,6 +551,7 @@
     <div id="toast-container" class="toast-container"></div>
 
     <!-- SCRIPTS -->
+    <script src="js/admin-config.js"></script>
     <script src="js/du-lieu.js"></script>
     <script src="js/quan-tri.js"></script>
 

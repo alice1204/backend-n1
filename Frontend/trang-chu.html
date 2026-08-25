@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cửa hàng nước hoa LUXURY</title>
+    <title>sunwin.com</title>
 
     <link rel="stylesheet" href="css/giao-dien.css">
     <link rel="stylesheet" href="css/trang-san-pham.css">
@@ -12,66 +12,172 @@
 
 <body>
 
-    <!-- PHẦN ĐẦU TRANG -->
+    <!-- PHẦN ĐẦU TRANG (HEADER VỚI LOGO Ở CHÍNH GIỮA MENU) -->
     <header class="dau-trang">
-        <div class="logo">
-            𝓛𝓤𝓧𝓤𝓡𝓨
+        
+        <!-- BÊN TRÁI: MENU ĐIỀU HƯỚNG -->
+        <div class="header-left-nav">
+            <nav class="thanh-dieu-huong">
+                <a href="trang-chu.html" class="active">Trang Chủ</a>
+                <a href="trang-san-pham.html">Sản Phẩm</a>
+                <a href="trang-don-hang.html">Đơn Hàng</a>
+            </nav>
         </div>
 
-        <nav class="thanh-dieu-huong">
-            <a href="trang-chu.html" style="color: #6e62f1; font-weight: bold;">𝕿𝖗𝖆𝖓𝖌 𝖈𝖍ủ</a>
-            <a href="trang-san-pham.html">𝓢ả𝓷 𝓹𝓱ẩ𝓶</a>
-            <a href="trang-don-hang.html">Đơ𝖓 𝖍à𝖓𝖌</a>
-            <a href="trang-quan-tri.html">𝕼𝖚ả𝖓 𝖙𝖗ị</a>
-        </nav>
-
-        <div class="logo-giua">
-            <img src="logo-removebg-preview.png" width="130px" alt="Luxury Logo">
-        </div>
-
-        <div class="tai-khoan">
-            <a href="trang-quan-tri.html" style="color: #070707; text-decoration: none;">𝕿à𝖎 𝖐𝖍𝖔ả𝖓</a>
-        </div>
-    </header>
-
-    <!-- PHẦN GIỚI THIỆU -->
-    <section class="gioi-thieu">
-        <div>
-            <h1>𝓚𝓗Ử 𝓗Ô𝓘 𝓥À 𝓛À𝓜 𝓣𝓗Ơ𝓜</h1>
-            <p>𝔗ì𝔪 𝔨𝔦ế𝔪 𝔪ù𝔦 𝔥ươ𝔫𝔤 𝔭𝔥ù 𝔥ợ𝔭 𝔳ớ𝔦 𝔭𝔥𝔬𝔫𝔤 𝔠á𝔠𝔥 𝔠ủ𝔞 𝔟ạ𝔫.</p>
-            <a href="trang-san-pham.html">
-                <button class="nut-chinh">KHÁM PHÁ NGAY</button>
+        <!-- Ở GIỮA: LOGO HÌNH ẢNH (logo-removebg-preview.png) -->
+        <div class="header-center-logo">
+            <a href="trang-chu.html" class="logo-center-wrap">
+                <img src="logo-removebg-preview.png" alt="LUXURY Perfume Logo" class="logo-center-img">
             </a>
         </div>
-    </section>
 
-    <!-- DANH SÁCH SẢN PHẨM NỔI BẬT -->
-    <main class="noi-dung">
-        <div class="tieu-de-khu-vuc">
-            <h2>𝖕𝖊𝖗𝖋𝖚𝖒𝖊 𝖕𝖗𝖔𝖉𝖚𝖈𝖙𝖘</h2>
-
-            <!-- NÚT 3 CHẤM -->
-            <div class="khu-vuc-danh-muc">
-                <button class="nut-ba-cham" onclick="moDanhMuc()">⋮</button>
-
-                <!-- MENU DANH MỤC -->
-                <div id="danh-sach-danh-muc" class="danh-sach-danh-muc">
-                    <button onclick="locDanhMucTrangChu('tat-ca')">Tất cả sản phẩm</button>
-                    <button onclick="locDanhMucTrangChu('nam')">Nước hoa nam</button>
-                    <button onclick="locDanhMucTrangChu('nu')">Nước hoa nữ</button>
-                    <button onclick="locDanhMucTrangChu('unisex')">Nước hoa unisex</button>
-                    <button onclick="locDanhMucTrangChu('khuyen-mai')">Sản phẩm khuyến mãi</button>
+        <!-- BÊN PHẢI: TÌM KIẾM & TÀI KHOẢN -->
+        <div class="header-right-tools">
+            <div class="thanh-tim-kiem-header">
+                <div class="search-input-wrapper">
+                    <span class="search-input-icon">🔍</span>
+                    <input type="text" id="header-search-input" class="search-input-header" placeholder="Tìm kiếm nước hoa...">
                 </div>
+                <div id="header-search-dropdown" class="header-search-dropdown"></div>
+            </div>
+
+            <div class="tai-khoan">
+                <!-- Tải tự động qua ung-dung.js theo vai trò người dùng -->
             </div>
         </div>
 
-        <!-- SẢN PHẨM NỔI BẬT ĐƯỢC TẢI ĐỘNG TỪ LOCALSTORAGE -->
+    </header>
+
+    <!-- BANNER GIỚI THIỆU HỒNG TRẮNG SANG TRỌNG (HERO SHOWCASE) -->
+    <section class="gioi-thieu">
+        <div class="hero-content-wrap">
+            
+            <!-- CỘT TRÁI: THÔNG ĐIỆP & NÚT KHÁM PHÁ -->
+            <div class="hero-left-col">
+                <div class="hero-badge-tag">
+                    <span>✨</span>
+                    <span>HAUTE PARFUMERIE COLLECTION 2026</span>
+                </div>
+                
+                <h1>
+                    ĐẲNG CẤP MÙI HƯƠNG<br>
+                    <span class="pink-text">QUYẾN RŨ & CON CU TO</span>
+                </h1>
+
+                <p>
+                    Tuyển tập những kiệt tác nước hoa chính hãng nhập khẩu nguyên seal từ các nhà mốt danh tiếng hàng đầu thế giới. Tôn vinh nét đẹp thanh lịch và phong cách thời thượng của bạn.
+                </p>
+
+                <div class="hero-action-row">
+                    <a href="trang-san-pham.html" style="text-decoration: none;">
+                        <button class="nut-chinh">
+                            <span>🛍️</span>
+                            <span>KHÁM PHÁ BỘ SƯU TẬP</span>
+                        </button>
+                    </a>
+                    <a href="#khu-vuc-san-pham-box" class="nut-phu-hero">
+                        Xem Sản Phẩm Nổi Bật ↓
+                    </a>
+                </div>
+
+                <div class="hero-stats-row">
+                    <div class="hero-stat-item">
+                        <strong>500+</strong>
+                        <span>Mẫu Nước Hoa VIP</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <strong>5%</strong>
+                        <span>Chính Hãng Nguyên Seal</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <strong>1%</strong>
+                        <span>Khách Hàng Hài Lòng</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CỘT PHẢI: KHUNG ẢNH NỀN NƯỚC HOA (nennuochoa.png) -->
+            <div class="hero-right-col">
+                <div class="hero-showcase-box">
+                    <div class="vip-avatar-frame">
+                        <img src="nennuochoa.png" alt="Kiệt Tác Nước Hoa" class="vip-avatar-img">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- THANH 4 CAM KẾT HOÀNG GIA (TRUST BADGES) -->
+    <div class="trust-badges-bar">
+        <div class="trust-badges-grid">
+            <div class="trust-badge-item">
+                <div class="trust-icon">👑</div>
+                <div class="trust-text">
+                    <strong>100% Chính Hãng</strong>
+                    <span>Nhập khẩu nguyên seal tem mác</span>
+                </div>
+            </div>
+
+            <div class="trust-badge-item">
+                <div class="trust-icon">🚚</div>
+                <div class="trust-text">
+                    <strong>Giao Hàng Hỏa Tốc</strong>
+                    <span>Miễn phí vận chuyển toàn quốc</span>
+                </div>
+            </div>
+
+            <div class="trust-badge-item">
+                <div class="trust-icon">🛡️</div>
+                <div class="trust-text">
+                    <strong>Bảo Hành Trọn Đời</strong>
+                    <span>Cam kết chuẩn mùi hương đến giọt cuối</span>
+                </div>
+            </div>
+
+            <div class="trust-badge-item">
+                <div class="trust-icon">🎁</div>
+                <div class="trust-text">
+                    <strong>Fullbox Quà Tặng VIP</strong>
+                    <span>Kèm túi hộp thương hiệu sang trọng</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DANH SÁCH SẢN PHẨM & PHÂN LOẠI DANH MỤC -->
+    <main class="noi-dung" id="khu-vuc-san-pham-box">
+        <div class="tieu-de-khu-vuc">
+            <h2>BỘ SƯU TẬP NƯỚC HOA ĐẲNG CẤP</h2>
+
+            <!-- PHÂN LOẠI DANH MỤC TRỰC QUAN VIP -->
+            <div class="danh-muc-tabs">
+                <button class="tab-danh-muc-btn active" onclick="chonDanhMucTrangChu('tat-ca', this)">
+                    🔥 Tất Cả
+                </button>
+                <button class="tab-danh-muc-btn" onclick="chonDanhMucTrangChu('nam', this)">
+                    👔 Nước Hoa Nam
+                </button>
+                <button class="tab-danh-muc-btn" onclick="chonDanhMucTrangChu('nu', this)">
+                    👗 Nước Hoa Nữ
+                </button>
+                <button class="tab-danh-muc-btn" onclick="chonDanhMucTrangChu('unisex', this)">
+                    ✨ Nước Hoa Unisex
+                </button>
+                <button class="tab-danh-muc-btn" onclick="chonDanhMucTrangChu('khuyen-mai', this)">
+                    🏷️ Ưu Đãi VIP
+                </button>
+            </div>
+        </div>
+
+        <!-- SẢN PHẨM TẢI ĐỘNG TỪ LOCALSTORAGE -->
         <div id="danh-sach-san-pham">
             <!-- Tải tự động qua ung-dung.js -->
         </div>
     </main>
 
     <!-- SCRIPTS -->
+    <script src="js/admin-config.js"></script>
     <script src="js/du-lieu.js"></script>
     <script src="js/ung-dung.js"></script>
 

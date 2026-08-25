@@ -10,9 +10,102 @@ let currentViewingOrderId = null;
 
 // Khởi chạy khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
-    khoiTaoGiaoDienAdmin();
+    kiemTraQuyenTruyCapAdmin();
     langNgheSuKienCapNhat();
 });
+
+// Kiểm tra quyền Admin
+function kiemTraQuyenTruyCapAdmin() {
+    if (!kiemTraLaAdmin()) {
+        hienThiManHinhKhoaAdmin();
+        return;
+    }
+    anManHinhKhoaAdmin();
+    khoiTaoGiaoDienAdmin();
+}
+
+function hienThiManHinhKhoaAdmin() {
+    let lockOverlay = document.getElementById('admin-lock-screen');
+    if (!lockOverlay) {
+        const lockHtml = `
+            <div id="admin-lock-screen" class="admin-lock-overlay">
+                <div class="admin-lock-card">
+                    <div class="admin-lock-icon">👑</div>
+                    <h2>ĐĂNG NHẬP QUẢN TRỊ VIÊN</h2>
+                    <p class="admin-lock-sub">Khu vực dành riêng cho Ban Quản Trị hệ thống LUXURY Store.</p>
+                    
+                    <div class="admin-demo-account-box">
+                        <strong>Tài khoản Admin thực tế tạo sẵn:</strong><br>
+                        Tên đăng nhập: <span class="badge-gold">admin</span> | Mật khẩu: <span class="badge-gold">admin123</span>
+                    </div>
+
+                    <form id="admin-lock-form" onsubmit="xuLyDangNhapKhoaAdmin(event)">
+                        <div class="admin-lock-group">
+                            <label>Tài Khoản Admin *</label>
+                            <input type="text" id="lock-admin-user" class="form-input" required value="admin" placeholder="Nhập tài khoản admin">
+                        </div>
+
+                        <div class="admin-lock-group">
+                            <label>Mật Khẩu Quản Trị *</label>
+                            <input type="password" id="lock-admin-pass" class="form-input" required value="admin123" placeholder="Nhập mật khẩu admin">
+                        </div>
+
+                        <div id="lock-admin-err" class="admin-lock-err" style="display: none;"></div>
+
+                        <button type="submit" class="btn-action-primary" style="width: 100%; margin-top: 15px; padding: 14px;">
+                            <span>🛡️</span>
+                            <span>MỞ KHÓA TRANG QUẢN TRỊ</span>
+                        </button>
+                    </form>
+
+                    <div style="margin-top: 20px;">
+                        <a href="trang-chu.html" style="color: #9cb3c9; font-size: 13px; text-decoration: none;">
+                            ← Quay lại Trang Chủ LUXURY
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', lockHtml);
+    } else {
+        lockOverlay.style.display = 'flex';
+    }
+}
+
+function anManHinhKhoaAdmin() {
+    const lockOverlay = document.getElementById('admin-lock-screen');
+    if (lockOverlay) {
+        lockOverlay.style.display = 'none';
+    }
+}
+
+function xuLyDangNhapKhoaAdmin(e) {
+    e.preventDefault();
+    const uname = document.getElementById('lock-admin-user').value.trim();
+    const pass = document.getElementById('lock-admin-pass').value.trim();
+    const errEl = document.getElementById('lock-admin-err');
+
+    const res = dangNhap(uname, pass);
+    if (res.success && res.user && res.user.role === 'admin') {
+        anManHinhKhoaAdmin();
+        khoiTaoGiaoDienAdmin();
+        hienThiToast(`Chào mừng ${res.user.hoTen} trở lại hệ thống quản trị!`, 'toast-success');
+    } else {
+        if (errEl) {
+            errEl.textContent = (res.user && res.user.role !== 'admin') 
+                ? 'Tài khoản này không có quyền Quản trị viên!' 
+                : (res.message || 'Tài khoản hoặc mật khẩu không chính xác!');
+            errEl.style.display = 'block';
+        }
+    }
+}
+
+function dangXuatAdmin() {
+    if (confirm('Bạn có chắc muốn đăng xuất khỏi trang Quản trị?')) {
+        dangXuat();
+        window.location.href = 'trang-chu.html';
+    }
+}
 
 // Khởi tạo các thành phần giao diện
 function khoiTaoGiaoDienAdmin() {
@@ -27,15 +120,20 @@ function khoiTaoGiaoDienAdmin() {
 // Lắng nghe sự kiện đồng bộ từ LocalStorage
 function langNgheSuKienCapNhat() {
     window.addEventListener('luxury_products_updated', () => {
-        taiDuLieuThongKe();
-        taiDanhSachSanPhamAdmin();
+        if (kiemTraLaAdmin()) {
+            taiDuLieuThongKe();
+            taiDanhSachSanPhamAdmin();
+        }
     });
 
     window.addEventListener('luxury_orders_updated', () => {
-        taiDuLieuThongKe();
-        taiDanhSachDonHangAdmin();
+        if (kiemTraLaAdmin()) {
+            taiDuLieuThongKe();
+            taiDanhSachDonHangAdmin();
+        }
     });
 }
+
 
 // --------------------------------------------------------------------------
 // 1. QUẢN LÝ TABS
